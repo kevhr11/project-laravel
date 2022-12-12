@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\rolId;
+use App\Models\rollId;
 
-class rolIdController extends Controller
+class rollIdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class rolIdController extends Controller
     public function index()
     {
         //
-        $rolId = rolId::all();
-        return $rolId;
+        $rollId = rollId::all();
+        return $rollId;
     }
 
     /**
@@ -29,10 +29,10 @@ class rolIdController extends Controller
     public function store(Request $request)
     {
         //
-        $rolId = new rolId();
-        $rolId->name = $request->name;
+        $rollId = new rollId();
+        $rollId->name = $request->name;
 
-        $rolId->save();
+        $rollId->save();
     }
 
     /**
@@ -44,8 +44,8 @@ class rolIdController extends Controller
     public function show($id)
     {
         //
-        $rolId = rolId::find($id);
-        return $rolId;
+        $rollId = rollId::find($id);
+        return $rollId;
     }
 
     /**
@@ -58,11 +58,11 @@ class rolIdController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $rolId = rolId::findOrFail($request->id);
-        $rolId->name = $request->name;
+        $rollId = rollId::findOrFail($request->id);
+        $rollId->name = $request->name;
 
-        $rolId->save();
-        return $rolId;
+        $rollId->save();
+        return $rollId;
     }
 
     /**
@@ -74,8 +74,8 @@ class rolIdController extends Controller
     public function destroy($id)
     {
         //
-        $rolId = rolId::destroy($id);
-        return $rolId;
+        $rollId = rollId::destroy($id);
+        return $rollId;
     }
 }
 

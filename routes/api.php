@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\rolIdController;
+use App\Http\Controllers\Api\rollIdController;
 use App\Http\Controllers\Api\StatusController;
 use App\Http\Controllers\Api\GenderController;
 use App\Http\Controllers\Api\BussinesTypeController;
@@ -23,11 +23,11 @@ use App\Http\Controllers\Api\ReviewsController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-    Route::get('/rolId', [rolIdController::class,'index']);
-    Route::post('/rolId', [rolIdController::class, 'store']);
-    Route::get('/rolId/{id}', [rolIdController::class, 'show']);
-    Route::put('/rolId/{id}', [rolIdController::class, 'update']);
-    Route::delete('/rolId/{id}', [rolIdController::class, 'destroy']);
+    Route::get('/rollId', [rollIdController::class,'index']);
+    Route::post('/rollId', [rollIdController::class, 'store']);
+    Route::get('/rollId/{id}', [rollIdController::class, 'show']);
+    Route::put('/rollId/{id}', [rollIdController::class, 'update']);
+    Route::delete('/rollId/{id}', [rollIdController::class, 'destroy']);
 
 
     Route::get('/Status', [StatusController::class,'index']);
