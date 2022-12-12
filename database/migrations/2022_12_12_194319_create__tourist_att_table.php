@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_municipalities', function (Blueprint $table) {
+        Schema::create('_tourist_att', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
-            $table->foreignId('idDepartaments')
-                  ->constrained('_departaments')
-                  ->nullable()
-                  ->cascadeOnUpdate()
-                  ->nullOnDelete()
-            ;
+            $table->integer('idStatu');
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_municipalities');
+        Schema::dropIfExists('_tourist_att');
     }
 };

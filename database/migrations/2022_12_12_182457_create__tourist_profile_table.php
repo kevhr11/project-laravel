@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Users;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('_tourist_profile', function (Blueprint $table) {
-            $table->integer('idUser');
+            $table->foreignId('idUser')
+                    ->constrained('_Users')
+                    ->nullable()
+                    ->cascadeOnUpdate()
+                    ->cascadeOnDelete()
+            ;
+
             $table->string('description');
             $table->string('location');
             $table->string('message');

@@ -19,7 +19,13 @@ return new class extends Migration
             $table->string('location');
             $table->integer('idMunicipalities');
             $table->string('description');
-            $table->integer('idTouristAttractive');
+            $table->foreignId('idTouristAttractive')
+                  ->constrained('_tourist_att')
+                  ->nullable()
+                  ->cascadeOnUpdate()
+                  ->nullOnDelete()
+            ;
+
             $table->string('gallery');
             $table->integer('score');
             $table->timestamps();

@@ -26,7 +26,13 @@ return new class extends Migration
             $table->integer('idGender');
             $table->date('dateOfBirth');
             $table->integer('idToken');
-            $table->integer('idSelectProfile');
+
+            $table->foreignId('idSelectProfile')
+                    ->constrained('select_profile')
+                    ->nullable()
+                    ->cascadeOnUpdate()
+                    ->nullOnDelete()
+            ;
             $table->timestamps();
         });
     }
