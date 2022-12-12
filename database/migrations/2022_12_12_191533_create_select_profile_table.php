@@ -13,16 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_municipalities', function (Blueprint $table) {
+        Schema::create('select_profile', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
-            $table->foreignId('idDepartaments')
-                  ->constrained('departaments')
-                  ->nullable()
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
-
             $table->timestamps();
         });
     }
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_municipalities');
+        Schema::dropIfExists('select_profile');
     }
 };
