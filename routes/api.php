@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\rolIdController;
+use App\Http\Controllers\Api\StatusController;
+use App\Http\Controllers\Api\GenderController;
+use App\Http\Controllers\Api\BussinesTypeController;
+use App\Http\Controllers\Api\ReviewsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +23,36 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+    Route::get('/rolId', [rolIdController::class,'index']);
+    Route::post('/rolId', [rolIdController::class, 'store']);
+    Route::get('/rolId/{id}', [rolIdController::class, 'show']);
+    Route::put('/rolId/{id}', [rolIdController::class, 'update']);
+    Route::delete('/rolId/{id}', [rolIdController::class, 'destroy']);
+
+
+    Route::get('/Status', [StatusController::class,'index']);
+    Route::post('/Status', [StatusController::class, 'store']);
+    Route::get('/Status/{id}', [StatusController::class, 'show']);
+    Route::put('/Status/{id}', [StatusController::class, 'update']);
+    Route::delete('/Status/{id}', [StatusController::class, 'destroy']);
+
+
+    Route::get('/Gender', [GenderController::class,'index']);
+    Route::post('/Gender', [GenderController::class, 'store']);
+    Route::get('/Gender/{id}', [GenderController::class, 'show']);
+    Route::put('/Gender/{id}', [GenderController::class, 'update']);
+    Route::delete('/Gender/{id}', [GenderController::class, 'destroy']);
+
+
+    Route::get('/BussinesType', [BussinesTypeController::class,'index']);
+    Route::post('/BussinesType', [BussinesTypeController::class, 'store']);
+    Route::get('/BussinesType/{id}', [BussinesTypeController::class, 'show']);
+    Route::put('/BussinesType/{id}', [BussinesTypeController::class, 'update']);
+    Route::delete('/BussinesType/{id}', [BussinesTypeController::class, 'destroy']);
+
+
+    Route::get('/Reviews', [ReviewsController::class,'index']);
+    Route::post('/Reviews', [ReviewsController::class, 'store']);
+    Route::get('/Reviews/{id}', [ReviewsController::class, 'show']);
+    Route::put('/Reviews/{id}', [ReviewsController::class, 'update']);
+    Route::delete('/Reviews/{id}', [ReviewsController::class, 'destroy']);
