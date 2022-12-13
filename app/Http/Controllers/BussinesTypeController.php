@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\BussinesType;
 use Illuminate\Http\Request;
-use App\Models\Status;
 
-class StatusController extends Controller
+class BussinesTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class StatusController extends Controller
     public function index()
     {
         //
-        $status = Status::all();
-        return $status;
+        $bussinesType = BussinesType::all();
+        return $bussinesType;
     }
 
     /**
@@ -29,10 +29,10 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         //
-        $status = new Status();
-        $status->name = $request->name;
+        $bussinesType = new BussinesType();
+        $bussinesType->name = $request->name;
 
-        $status->save();
+        $bussinesType->save();
     }
 
     /**
@@ -44,8 +44,8 @@ class StatusController extends Controller
     public function show($id)
     {
         //
-        $status = Status::find($id);
-        return $status;
+        $bussinesType = BussinesType::find($id);
+        return $bussinesType;
     }
 
     /**
@@ -58,11 +58,11 @@ class StatusController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $status = Status::findOrFail($request->id);
-        $status->name = $request->name;
+        $bussinesType = BussinesType::findOrFail($request->id);
+        $bussinesType->name = $request->name;
 
-        $status->save();
-        return $status;
+        $bussinesType->save();
+        return $bussinesType;
     }
 
     /**
@@ -74,7 +74,7 @@ class StatusController extends Controller
     public function destroy($id)
     {
         //
-        $status = Status::destroy($id);
-        return $status;
+        $bussinesType = BussinesType::destroy($id);
+        return $bussinesType;
     }
 }

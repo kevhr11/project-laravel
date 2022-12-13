@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\BussinesType;
 use Illuminate\Http\Request;
+use App\Models\Status;
 
-class BussinesTypeController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class BussinesTypeController extends Controller
     public function index()
     {
         //
-        $bussinesType = BussinesType::all();
-        return $bussinesType;
+        $status = Status::all();
+        return $status;
     }
 
     /**
@@ -29,10 +29,10 @@ class BussinesTypeController extends Controller
     public function store(Request $request)
     {
         //
-        $bussinesType = new BussinesType();
-        $bussinesType->name = $request->name;
+        $status = new Status();
+        $status->name = $request->name;
 
-        $bussinesType->save();
+        $status->save();
     }
 
     /**
@@ -44,8 +44,8 @@ class BussinesTypeController extends Controller
     public function show($id)
     {
         //
-        $bussinesType = BussinesType::find($id);
-        return $bussinesType;
+        $status = Status::find($id);
+        return $status;
     }
 
     /**
@@ -58,11 +58,11 @@ class BussinesTypeController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $bussinesType = BussinesType::findOrFail($request->id);
-        $bussinesType->name = $request->name;
+        $status = Status::findOrFail($request->id);
+        $status->name = $request->name;
 
-        $bussinesType->save();
-        return $bussinesType;
+        $status->save();
+        return $status;
     }
 
     /**
@@ -74,7 +74,7 @@ class BussinesTypeController extends Controller
     public function destroy($id)
     {
         //
-        $bussinesType = BussinesType::destroy($id);
-        return $bussinesType;
+        $status = Status::destroy($id);
+        return $status;
     }
 }

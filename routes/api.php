@@ -2,11 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\rollIdController;
-use App\Http\Controllers\Api\StatusController;
-use App\Http\Controllers\Api\GenderController;
-use App\Http\Controllers\Api\BussinesTypeController;
-use App\Http\Controllers\Api\ReviewsController;
+use App\Http\Controllers\rollIdController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\GenderController;
+use App\Http\Controllers\BussinesTypeController;
+use App\Http\Controllers\ReviewsController;
 
 
 /*
