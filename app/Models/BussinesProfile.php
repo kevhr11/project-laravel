@@ -20,4 +20,8 @@ class BussinesProfile extends Model
         'idTourisPlace',
         'score'
     ];
+
+    public function Service(){
+      return $this->belongsTo(BussinesProfile::class, 'idBussineProfile');
+    }
 }

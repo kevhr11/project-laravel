@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->integer('idCategoria');
+            $table->foreignId('idCategory')
+                  ->constrained('categories')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
             $table->string('name');
             $table->string('description');
             $table->float('price');

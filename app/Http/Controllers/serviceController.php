@@ -37,7 +37,7 @@ class serviceController extends Controller
     public function store(Request $request)
     {
         $service = new Service();
-        $service->idCategoria = $request->idCategoria;
+        $service->idCategory = $request->idCategory;
         $service->name = $request->name;
         $service->description = $request->description;
         $service->price = $request->price;
@@ -79,7 +79,7 @@ class serviceController extends Controller
     public function update(Request $request, $id)
     {
         $service = Service::findOrFail($request->id);
-        $service->idCategoria = $request->idCategoria;
+        $service->idCategory = $request->idCategory;
         $service->name = $request->name;
         $service->description = $request->description;
         $service->price = $request->price;

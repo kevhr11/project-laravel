@@ -10,6 +10,10 @@ class GetService extends Model
     use HasFactory;
     protected $fillables = [
         'idService',
-        'idBussneProfile'
+        'idBussineProfile'
     ];
+
+    public function Service(){
+      return $this->hasMany(Service::class, 'id');
+    }
 }

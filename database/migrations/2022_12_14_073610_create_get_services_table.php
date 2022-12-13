@@ -15,8 +15,14 @@ return new class extends Migration
     {
         Schema::create('get_services', function (Blueprint $table) {
             $table->id();
-            $table->integer('idService');
-            $table->integer('idBussineProfile');
+            $table->foreignId('idService')
+                  ->constrained('services')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();                  
+            $table->foreignId('idBussineProfile')
+                  ->constrained('bussines_profiles')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
             $table->timestamps();
         });
     }

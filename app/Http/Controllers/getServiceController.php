@@ -38,7 +38,7 @@ class getServiceController extends Controller
     {
         $getService = new GetService();
         $getService->idService = $request->idService;
-        $getService->idBussneProfile = $request->idBussneProfile;
+        $getService->idBussineProfile = $request->idBussineProfile;
 
         $getService->save();
     }
@@ -76,7 +76,7 @@ class getServiceController extends Controller
     {
         $getService = GetService::findOrFail($request->id);
         $getService->idService = $request->idService;
-        $getService->idBussneProfile = $request->idBussneProfile;
+        $getService->idBussineProfile = $request->idBussineProfile;
 
         $getService->save();
         return $getService;
