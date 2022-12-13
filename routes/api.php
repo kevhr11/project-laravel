@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\categoriaController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\serviceController;
+use App\Http\Controllers\getServiceController;
+use App\Http\Controllers\bussinesProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //Category
-Route::get('/category', [categoriaController::class,'index']);//Show Categories
-Route::post('/category', [categoriaController::class,'store']);//Create new category
-Route::put('/category/{id}', [categoriaController::class,'update']);//Update category
-Route::delete('/category/{id}', [categoriaController::class,'destroy']);//Delete category
+Route::get('/category', [categoryController::class,'index']);//Show Categories
+Route::post('/category', [categoryController::class,'store']);//Create new category
+Route::put('/category/{id}', [categoryController::class,'update']);//Update category
+Route::delete('/category/{id}', [categoryController::class,'destroy']);//Delete category
 
 //Service
 Route::get('/service', [serviceController::class,'index']);//Show Services

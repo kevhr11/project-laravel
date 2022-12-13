@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\GetService;
 
-class getController extends Controller
+class getServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class getController extends Controller
      */
     public function index()
     {
-        $getServices = GetService::all();
-        return $getServices;
+        $getService = GetService::all();
+        return $getService;
     }
 
     /**
