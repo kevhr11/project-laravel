@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Municipalitie extends Model
 {
     use HasFactory;
+    public function departaments(){
+        return $this->belongsTo(Departament::class, 'idDepartaments');
+    }
 }
