@@ -23,6 +23,8 @@ use App\Http\Controllers\ReviewsController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
     Route::get('/rollId', [rollIdController::class,'index']);
     Route::post('/rollId', [rollIdController::class, 'store']);
     Route::get('/rollId/{id}', [rollIdController::class, 'show']);
