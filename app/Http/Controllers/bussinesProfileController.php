@@ -14,8 +14,8 @@ class bussinesProfileController extends Controller
      */
     public function index()
     {
-        $bussinesPrfiles = BussinesProfile::all();
-        return $bussinesPrfiles;
+        $bussinesProfiles = BussinesProfile::all();
+        return $bussinesProfiles;
     }
 
     /**
