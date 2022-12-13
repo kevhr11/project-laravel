@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_municipalities', function (Blueprint $table) {
+        Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
 
             $table->foreignId('idDepartaments')
-                  ->constrained('_departaments')
+                  ->constrained('departaments')
                   ->nullable()
                   ->cascadeOnUpdate()
                   ->nullOnDelete()
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_municipalities');
+        Schema::dropIfExists('municipalities');
     }
 };

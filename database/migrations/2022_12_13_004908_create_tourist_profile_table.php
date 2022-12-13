@@ -1,0 +1,49 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('tourist_profile', function (Blueprint $table) {
+            $table->foreignId('idUser')
+            ->constrained('users')
+            ->nullable()
+            ->cascadeOnUpdate()
+            ->nullOnDelete()
+    ;
+
+    $table->string('description');
+    $table->string('location');
+    $table->string('message');
+    $table->string('reviews');
+    $table->foreignId('idTouristPlaces')
+            ->constrained('tourist_places')
+            ->nullable()
+            ->cascadeOnUpdate()
+            ->nullOnDelete()
+    ;
+
+    $table->integer('idGallery');
+    $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('tourist_profile');
+    }
+};

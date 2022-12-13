@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_departaments', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tourist_att', function (Blueprint $table) {
             $table->string('name');
+            $table->integer('idStatu');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_departaments');
+        Schema::dropIfExists('tourist_att');
     }
 };

@@ -13,14 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_tourist_places', function (Blueprint $table) {
+        Schema::create('tourist_places', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('location');
-            $table->integer('idMunicipalities');
+            $table->foreignId('idMunicipalities')
+                  ->constrained('municipalities')
+                  ->nullable()
+                  ->cascadeOnUpdate()
+                  ->nullOnDelete()
+            ;
+
             $table->string('description');
             $table->foreignId('idTouristAttractive')
-                  ->constrained('_tourist_att')
+                  ->constrained('tourist_att')
                   ->nullable()
                   ->cascadeOnUpdate()
                   ->nullOnDelete()
@@ -39,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_tourist_places');
+        Schema::dropIfExists('tourist_places');
     }
 };
