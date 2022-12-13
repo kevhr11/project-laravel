@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class selectProfile extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+    ];
+
+     public function users(){
+        return $this->hasMany(Users::class,'id');
+    }
+
 }

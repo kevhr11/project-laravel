@@ -29,9 +29,8 @@ return new class extends Migration
 
             $table->foreignId('idSelectProfile')
                     ->constrained('select_profile')
-                    ->nullable()
                     ->cascadeOnUpdate()
-                    ->nullOnDelete()
+                    ->cascadeOnDelete()
             ;
             $table->timestamps();
         });

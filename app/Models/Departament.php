@@ -10,6 +10,10 @@ class Departament extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function municipalities(){
         return $this->hasMany(Municipalitie::class, 'id');
     }

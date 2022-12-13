@@ -19,22 +19,21 @@ return new class extends Migration
             $table->string('location');
             $table->foreignId('idMunicipalities')
                   ->constrained('municipalities')
-                  ->nullable()
                   ->cascadeOnUpdate()
-                  ->nullOnDelete()
+                  ->cascadeOnDelete ()
             ;
 
             $table->string('description');
-            $table->foreignId('idTouristAttractive')
-                  ->constrained('tourist_att')
-                  ->nullable()
-                  ->cascadeOnUpdate()
-                  ->nullOnDelete()
-            ;
+
 
             $table->string('gallery');
             $table->integer('score');
             $table->timestamps();
+            $table->foreignId('idTouristAttractive')
+            ->constrained('tourist_att')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete()
+      ;
         });
     }
 

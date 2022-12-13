@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tourist_att', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->integer('idStatu');
             $table->timestamps();

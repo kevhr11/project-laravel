@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('tourist_profile', function (Blueprint $table) {
             $table->foreignId('idUser')
             ->constrained('users')
-            ->nullable()
             ->cascadeOnUpdate()
-            ->nullOnDelete()
+            ->cascadeOnDelete()
     ;
 
     $table->string('description');
@@ -27,9 +26,8 @@ return new class extends Migration
     $table->string('reviews');
     $table->foreignId('idTouristPlaces')
             ->constrained('tourist_places')
-            ->nullable()
             ->cascadeOnUpdate()
-            ->nullOnDelete()
+            ->cascadeOnDelete()
     ;
 
     $table->integer('idGallery');

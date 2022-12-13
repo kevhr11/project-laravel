@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class TouristAtt extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'idStatu'
+    ];
+
+    public function touristplace(){
+        return $this->hasMany(TouristPlace::class,'id');
+    }
+
 }

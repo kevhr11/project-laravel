@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TouristPlaceController;
+use App\Models\TouristPlace;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+
+*Table TouristPlace
+
+*/
+
+Route::get('/') ;
+Route::get('/touristplaces', [TouristPlaceController::class,'index']);
