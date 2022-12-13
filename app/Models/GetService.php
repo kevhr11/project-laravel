@@ -16,4 +16,8 @@ class GetService extends Model
     public function Service(){
       return $this->hasMany(Service::class, 'id');
     }
+
+    public function BussinesProfile(){
+      return $this->hasMany(BussinesProfile::class, 'id');
+    }
 }

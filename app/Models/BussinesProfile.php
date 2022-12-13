@@ -21,7 +21,7 @@ class BussinesProfile extends Model
         'score'
     ];
 
-    public function Service(){
-      return $this->belongsTo(BussinesProfile::class, 'idBussineProfile');
+    public function getService(){
+      return $this->belongsTo(GetService::class, 'idBussineProfile');
     }
 }
