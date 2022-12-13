@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\GetService;
 
-class categoryController extends Controller
+class getServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class categoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return $category;
+        $getService = GetService::all();
+        return $getService;
     }
 
     /**
@@ -36,10 +36,11 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
+        $getService = new GetService();
+        $getService->idService = $request->idService;
+        $getService->idBussneProfile = $request->idBussneProfile;
 
-        $category->save();
+        $getService->save();
     }
 
     /**
@@ -73,11 +74,12 @@ class categoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($request->id);
-        $category->name = $request->name;
+        $getService = GetService::findOrFail($request->id);
+        $getService->idService = $request->idService;
+        $getService->idBussneProfile = $request->idBussneProfile;
 
-        $category->save();
-        return $category;
+        $getService->save();
+        return $getService;
     }
 
     /**
@@ -88,7 +90,7 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::destroy($id);
-        return $category;
+        $getService = GetService::destroy($id);
+        return $getService;
     }
 }
