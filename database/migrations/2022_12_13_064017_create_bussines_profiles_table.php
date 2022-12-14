@@ -22,11 +22,6 @@ return new class extends Migration
             $table->string('description');
             $table->string('location');
 
-            $table->foreignId('idGetServices')
-                  ->constrained('get_services')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
-
             $table->foreignId('idBussinesType')
                   ->constrained('bussines_types')
                   ->cascadeOnUpdate()

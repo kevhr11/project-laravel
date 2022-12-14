@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tourist_profiles', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('idUser')
             ->constrained('users')
             ->cascadeOnUpdate()

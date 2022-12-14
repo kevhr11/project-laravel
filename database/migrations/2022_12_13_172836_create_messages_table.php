@@ -15,8 +15,16 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('idBussinesProfile');
-            $table->string('idTouristProfile');
+            $table->foreignId('idBussinesProfile')
+                  ->constrained('bussines_profiles')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete()
+            ;
+            $table->foreignId('idTouristProfile')
+                  ->constrained('tourist_profiles')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete()
+            ;
             $table->string('name');
             $table->string('input');
             $table->string('output');
