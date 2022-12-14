@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/touristplaces', [TouristPlaceController::class,'index']);
 Route::post('/touristplaces', [TouristPlaceController::class,'store']);
 Route::put('/touristplaces/{id}', [TouristPlaceController::class,'update']);
-//Route::post('/touristplaces/{id}', [TouristPlaceController::class,'destroy']);
+Route::post('/touristplaces/{id}', [TouristPlaceController::class,'destroy']);
 
 /*
 |______________________________________________
@@ -60,7 +60,7 @@ Route::put('/touristplaces/{id}', [TouristPlaceController::class,'update']);
 Route::get('/departaments', [DepartamentController::class,'index']);
 Route::post('/departaments', [DepartamentController::class,'store']);
 Route::put('/departaments/{id}', [DepartamentController::class,'update']);
-//Route::post('/touristplaces/{id}', [TouristPlaceController::class,'destroy']);
+Route::delete('/departaments/{id}', [TouristPlaceController::class,'destroy']);
 
 
 /*
@@ -71,7 +71,7 @@ Route::put('/departaments/{id}', [DepartamentController::class,'update']);
 Route::get('/municipalities', [MunicipalitiesController::class,'index']);
 Route::post('/municipalities', [MunicipalitiesController::class,'store']);
 Route::put('/municipalities/{id}', [MunicipalitiesController::class,'update']);
-
+Route::delete('/municipalities/{id}', [TouristPlaceController::class,'destroy']);
 /*
 |______________________________________________
 |    *selectProfiles
@@ -80,7 +80,7 @@ Route::put('/municipalities/{id}', [MunicipalitiesController::class,'update']);
 Route::get('/selectprofiles', [SelectProfileController::class,'index']);
 Route::post('/selectprofiles', [SelectProfileController::class,'store']);
 Route::put('/selectprofile/{id}', [SelectProfileController::class,'update']);
-
+Route::delete('/selectprofile/{id}', [TouristPlaceController::class,'destroy']);
 
 /*
 |______________________________________________
@@ -90,6 +90,7 @@ Route::put('/selectprofile/{id}', [SelectProfileController::class,'update']);
 Route::get('/touristprofiles', [TouristProfileController::class,'index']);
 Route::post('/touristprofiles', [TouristProfileController::class,'store']);
 Route::put('/touristprofiles/{id}', [TouristProfileController::class,'update']);
+Route::delete('/touristprofiles/{id}', [TouristPlaceController::class,'destroy']);
 
 
 /*
@@ -100,7 +101,7 @@ Route::put('/touristprofiles/{id}', [TouristProfileController::class,'update']);
 Route::get('/touristatt', [TouristAttController::class,'index']);
 Route::post('/touristatt', [TouristAttController::class,'store']);
 Route::put('/touristatt/{id}', [TouristAttController::class,'update']);
-
+Route::delete('/touristatt/{id}', [TouristPlaceController::class,'destroy']);
 
 /*
 |______________________________________________
@@ -110,6 +111,7 @@ Route::put('/touristatt/{id}', [TouristAttController::class,'update']);
 Route::get('/users', [UsersController::class,'index']);
 Route::post('/users', [UsersController::class,'store']);
 Route::put('/users/{id}', [UsersController::class,'update']);
+Route::delete('/users/{id}', [TouristPlaceController::class,'destroy']);
 
 
 
