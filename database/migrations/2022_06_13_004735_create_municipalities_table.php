@@ -16,10 +16,8 @@ return new class extends Migration
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
             $table->foreignId('idDepartaments')
-                    ->nullable()
-                    ->constrained('departaments')
+                  ->constrained('departaments')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete()
             ;

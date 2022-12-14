@@ -43,7 +43,7 @@ class TouristPlaceController extends Controller
     {
         //
         $TouristPlace = new TouristPlace();
-        $TouristPlace->name = $request->mame;
+        $TouristPlace->namePlace = $request->namePlace;
         $TouristPlace->location = $request->location;
         $TouristPlace->idMunicipalities = $request->idMunicipalities;
         $TouristPlace->description = $request->description;
@@ -52,6 +52,8 @@ class TouristPlaceController extends Controller
         $TouristPlace->idTouristAttractive = $request->idTouristAttractive;
 
         $TouristPlace->save();
+
+        return $TouristPlace;
     }
 
     /**
@@ -87,7 +89,7 @@ class TouristPlaceController extends Controller
     {
         //
         $TouristPlace = TouristPlace::findOrFail($id);
-        $TouristPlace->name = $request->mame;
+        $TouristPlace->namePlace = $request->namePlace;
         $TouristPlace->location = $request->location;
         $TouristPlace->idMunicipalities = $request->idMunicipalities;
         $TouristPlace->description = $request->description;

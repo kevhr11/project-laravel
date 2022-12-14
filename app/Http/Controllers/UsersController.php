@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TouristProfile;
+
+use App\Models\Users;
 use Illuminate\Http\Request;
 
-class TouristProfileController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,9 @@ class TouristProfileController extends Controller
     public function index()
     {
         //
-        $touristprofile = TouristProfile::all();
+        $user = Users::all();
 
-        return $touristprofile;
+        return $user;
     }
 
     /**
@@ -39,21 +40,24 @@ class TouristProfileController extends Controller
     public function store(Request $request)
     {
         //
-        $touristprofile = new TouristProfile();
+        $user = new Users();
 
-        $touristprofile->idUser = $request->idUser;
-        $touristprofile->description = $request->description;
-        $touristprofile->location = $request->location;
-        $touristprofile->message = $request->message;
-        $touristprofile->reviews = $request->reviews;
-        $touristprofile->idTouristPlaces = $request->idTouristPlaces;
-        $touristprofile->idGallery = $request->idGallery;
+        $user->name = $request->name;
+        $user->lastName = $request->lastName;
+        $user->DUI = $request->DUI;
+        $user->phoneNumber = $request->phoneNumber;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->idRoll = $request->idRoll;
+        $user->imgProfile = $request->imgProfile;
+        $user->idGender = $request->idGender;
+        $user->dateOfBirth = $request->dateOfBirth;
+        $user->idToken = $request->idToken;
+        $user->idSelectProfile = $request->idSelectProfile;
 
-        $touristprofile->save();
+        $user->save();
 
-        return $touristprofile;
-
-
+        return $user;
     }
 
     /**
@@ -88,20 +92,24 @@ class TouristProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $touristprofile = TouristProfile::findOrFail($id);
+        $user = Users::findOrFail($id);
 
-        $touristprofile->idUser = $request->idUser;
-        $touristprofile->description = $request->description;
-        $touristprofile->location = $request->location;
-        $touristprofile->message = $request->message;
-        $touristprofile->reviews = $request->reviews;
-        $touristprofile->idTouristPlaces = $request->idTouristPlaces;
-        $touristprofile->idGallery = $request->idGallery;
+        $user->name = $request->name;
+        $user->lastName = $request->Lastname;
+        $user->DUI = $request->DUI;
+        $user->phoneNumber = $request->phoneNumber;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->idRoll = $request->idRoll;
+        $user->imgProfile = $request->imgProfile;
+        $user->idGender = $request->idGender;
+        $user->dateOfBirth = $request->dateOfBirth;
+        $user->idToken = $request->idToken;
+        $user->idSelectProfile = $request->idSelectProfile;
 
-        $touristprofile->save();
+        $user->save();
 
-        return $touristprofile;
-
+        return $user;
     }
 
     /**

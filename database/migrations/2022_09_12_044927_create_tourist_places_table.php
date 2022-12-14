@@ -15,22 +15,20 @@ return new class extends Migration
     {
         Schema::create('tourist_places', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('namePlace');
             $table->string('location');
             $table->foreignId('idMunicipalities')
                   ->constrained('municipalities')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete ()
             ;
-
             $table->string('description');
-
 
             $table->string('gallery');
             $table->integer('score');
             $table->timestamps();
             $table->foreignId('idTouristAttractive')
-            ->constrained('tourist_att')
+            ->constrained('tourist_atts')
             ->cascadeOnUpdate()
             ->cascadeOnDelete()
       ;

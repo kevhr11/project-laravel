@@ -10,7 +10,7 @@ class Municipalitie extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'idDepartaments',
+        'idDepartaments'
 
     ];
 
@@ -22,4 +22,6 @@ class Municipalitie extends Model
     public function turistPlaces(){
         return $this->hasMany(TouristPlace::class, 'id');
     }
+
+
 }

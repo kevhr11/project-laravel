@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tourist_att', function (Blueprint $table) {
+        Schema::create('select_profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('idStatu');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tourist_att');
+        Schema::dropIfExists('select_profiles');
     }
 };

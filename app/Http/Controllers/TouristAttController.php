@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TouristProfile;
+use App\Models\TouristAtt;
 use Illuminate\Http\Request;
 
-class TouristProfileController extends Controller
+class TouristAttController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class TouristProfileController extends Controller
     public function index()
     {
         //
-        $touristprofile = TouristProfile::all();
+        $touristiatt = TouristAtt::all();
 
-        return $touristprofile;
+        return $touristiatt;
     }
 
     /**
@@ -28,6 +28,7 @@ class TouristProfileController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -39,21 +40,14 @@ class TouristProfileController extends Controller
     public function store(Request $request)
     {
         //
-        $touristprofile = new TouristProfile();
 
-        $touristprofile->idUser = $request->idUser;
-        $touristprofile->description = $request->description;
-        $touristprofile->location = $request->location;
-        $touristprofile->message = $request->message;
-        $touristprofile->reviews = $request->reviews;
-        $touristprofile->idTouristPlaces = $request->idTouristPlaces;
-        $touristprofile->idGallery = $request->idGallery;
+        $TouristAtt = new TouristAtt();
+        $TouristAtt->name = $request->name;
+        $TouristAtt->idStatu = $request->idStatu;
 
-        $touristprofile->save();
+        $TouristAtt->save();
 
-        return $touristprofile;
-
-
+        return $TouristAtt;
     }
 
     /**
@@ -76,6 +70,7 @@ class TouristProfileController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -88,19 +83,14 @@ class TouristProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $touristprofile = TouristProfile::findOrFail($id);
+        $touristAtt  = TouristAtt::findOrFail($id);
 
-        $touristprofile->idUser = $request->idUser;
-        $touristprofile->description = $request->description;
-        $touristprofile->location = $request->location;
-        $touristprofile->message = $request->message;
-        $touristprofile->reviews = $request->reviews;
-        $touristprofile->idTouristPlaces = $request->idTouristPlaces;
-        $touristprofile->idGallery = $request->idGallery;
+        $touristAtt->name = $request->name;
+        $touristAtt->idStatu = $request->idStatu;
 
-        $touristprofile->save();
+        $touristAtt->save();
 
-        return $touristprofile;
+        return $touristAtt;
 
     }
 

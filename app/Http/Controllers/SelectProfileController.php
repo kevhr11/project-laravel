@@ -43,6 +43,7 @@ class SelectProfileController extends Controller
         $selectprofile->name = $request->name;
 
         $selectprofile->save();
+        return $selectprofile;
     }
 
     /**
@@ -84,8 +85,6 @@ class SelectProfileController extends Controller
         $selectprofile->save();
 
         return $selectprofile;
-
-
 
     }
 

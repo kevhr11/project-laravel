@@ -46,6 +46,8 @@ class MunicipalitiesController extends Controller
 
         $municipalities->save();
 
+        return $municipalities;
+
     }
 
     /**

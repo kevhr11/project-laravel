@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tourist_profile', function (Blueprint $table) {
+        Schema::create('tourist_profiles', function (Blueprint $table) {
             $table->foreignId('idUser')
             ->constrained('users')
             ->cascadeOnUpdate()
@@ -42,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tourist_profile');
+        Schema::dropIfExists('tourist_profiles');
     }
 };

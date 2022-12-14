@@ -24,11 +24,11 @@ return new class extends Migration
             $table->integer('idRoll');
             $table->string('imgProfile');
             $table->integer('idGender');
-            $table->date('dateOfBirth');
+            $table->string('dateOfBirth');
             $table->integer('idToken');
 
             $table->foreignId('idSelectProfile')
-                    ->constrained('select_profile')
+                    ->constrained('select_profiles')
                     ->cascadeOnUpdate()
                     ->cascadeOnDelete()
             ;

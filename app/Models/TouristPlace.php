@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Faker\Provider\sv_SE\Municipality;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,14 +10,13 @@ class TouristPlace extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'namePlace',
         'location',
         'idMunicipalities',
         'description',
         'gallery',
         'score',
         'idTouristAttractive'
-
     ];
 
 

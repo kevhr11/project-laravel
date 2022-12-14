@@ -46,6 +46,7 @@ class DepartamentController extends Controller
          $departament->name = $request->name;
 
          $departament->save();
+         return $departament;
 
     }
 
