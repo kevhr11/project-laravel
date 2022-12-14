@@ -22,7 +22,7 @@ class BussinesProfile extends Model
     ];
 
     public function getService(){
-      return $this->belongsTo(GetService::class, 'idBussineProfile');
+      return $this->hasMany(GetService::class, 'idBussineProfile');
     }
 
     public function message(){
