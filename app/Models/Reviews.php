@@ -18,4 +18,5 @@ class Reviews extends Model
     public function TouristProfile  (){
         return $this->hasMany(TouristProfile  ::class, 'id');
     }
+
 }

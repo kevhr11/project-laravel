@@ -24,6 +24,11 @@ class TouristProfile extends Model
     }
 
     public function message(){
-        return $this->hasMany(message::class, 'id');
+        return $this->belongsTo(message::class, 'message');
     }
+
+    public function reviews(){
+        return $this->belongsTo(Reviews::class, 'reviews');
+    }
+
 }

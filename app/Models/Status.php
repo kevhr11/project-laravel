@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['name'];
 
     public function TouristAtt(){
@@ -18,5 +18,6 @@ class Status extends Model
     public function Service(){
         return $this->hasMany(Service::class, 'id');
     }
+
 
 }

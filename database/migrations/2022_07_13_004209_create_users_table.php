@@ -29,7 +29,13 @@ return new class extends Migration
             ;
 
             $table->string('imgProfile');
-            $table->integer('idGender');
+
+            $table->foreignId('idGender')
+                  ->constrained('genders')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete()
+            ;
+
             $table->string('dateOfBirth');
 
             $table->foreignId('idToken')

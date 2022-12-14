@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('tourist_atts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('idStatu');
+            $table->foreignId('idStatu')
+                  ->constrained('statuses')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete()
+            ;
             $table->timestamps();
         });
     }

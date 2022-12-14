@@ -14,4 +14,10 @@ class Gender extends Model
     public function Users(){
         return $this->hasMany(Users::class, 'id');
     }
+
+    public function Gender(){
+        return $this->hasMany(Gender::class, 'id');
+    }
+
+
 }

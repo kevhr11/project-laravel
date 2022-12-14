@@ -34,8 +34,12 @@ class Users extends Model
         return $this->belongsTo(tokens::class,'idToken');
     }
 
-    public function rollid(){
+    public function roll(){
         return $this->belongsTo(rollId::class,'idRoll');
+    }
+
+    public function gender(){
+        return $this->belongsTo(Gender::class,'idGender');
     }
 
 

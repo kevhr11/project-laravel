@@ -18,4 +18,9 @@ class TouristAtt extends Model
         return $this->hasMany(TouristPlace::class,'id');
     }
 
+    public function status(){
+        return $this->belongsTo(Status::class,'idStatu');
+    }
+
+
 }
