@@ -10,4 +10,8 @@ class Gender extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function Users(){
+        return $this->hasMany(Users::class, 'id');
+    }
 }

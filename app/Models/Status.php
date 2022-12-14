@@ -10,4 +10,13 @@ class Status extends Model
     use HasFactory;
     
     protected $fillable = ['name'];
+
+    public function TouristAtt(){
+        return $this->hasMany(TouristAtt::class, 'id');
+    }
+
+    public function Service(){
+        return $this->hasMany(Service::class, 'id');
+    }
+
 }

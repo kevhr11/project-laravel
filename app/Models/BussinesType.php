@@ -11,4 +11,8 @@ class BussinesType extends Model
 
     protected $fillable = ['name'];
 
+
+    public function bussinesProfile(){
+        return $this->hasMany(bussinesProfile::class, 'id');
+    }
 }
