@@ -13,26 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bussines_profiles', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idUser')
-                  ->constrained('users')
+            $table->foreignId('idBussinesProfile')
+                  ->constrained('bussines_profiles')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-            $table->string('description');
-            $table->string('location');
 
-            $table->foreignId('idBussinesType')
-                  ->constrained('bussines_types')
+            $table->foreignId('idTouristProfile')
+                  ->constrained('tourist_profiles')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete()
             ;
-
-            $table->string('certificate');
-            $table->string('message');
-            $table->string('reviews');
-            $table->integer('idTourisPlace');
-            $table->integer('score');
+            $table->string('description');
+            $table->string('score');
             $table->timestamps();
         });
     }
@@ -44,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bussines_profiles');
+        Schema::dropIfExists('reviews');
     }
 };

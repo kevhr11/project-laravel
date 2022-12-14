@@ -22,6 +22,6 @@ class Service extends Model
     }
 
     public function Service(){
-      return $this->belongsTo(GetService::class, 'idService');
+      return $this->hasMany(GetService::class, 'idService');
     }
 }
