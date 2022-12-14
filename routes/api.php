@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TouristPlaceController;
 use App\Http\Controllers\TouristProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\rollIdController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\GenderController;
+use App\Http\Controllers\BussinesTypeController;
+use App\Http\Controllers\ReviewsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -125,3 +131,37 @@ Route::get('/bussinesProfile', [bussinesProfileController::class,'index']);//Sho
 Route::post('/bussinesProfile', [bussinesProfileController::class,'store']);//Create new bussinesProfile
 Route::put('/bussinesProfile/{id}', [bussinesProfileController::class,'update']);//Update bussinesProfile
 Route::delete('/bussinesProfile/{id}', [bussinesProfileController::class,'destroy']);//Delete bussinesProfile
+
+    Route::get('/rollId', [rollIdController::class,'index']);
+    Route::post('/rollId', [rollIdController::class, 'store']);
+    Route::get('/rollId/{id}', [rollIdController::class, 'show']);
+    Route::put('/rollId/{id}', [rollIdController::class, 'update']);
+    Route::delete('/rollId/{id}', [rollIdController::class, 'destroy']);
+
+
+    Route::get('/Status', [StatusController::class,'index']);
+    Route::post('/Status', [StatusController::class, 'store']);
+    Route::get('/Status/{id}', [StatusController::class, 'show']);
+    Route::put('/Status/{id}', [StatusController::class, 'update']);
+    Route::delete('/Status/{id}', [StatusController::class, 'destroy']);
+
+
+    Route::get('/Gender', [GenderController::class,'index']);
+    Route::post('/Gender', [GenderController::class, 'store']);
+    Route::get('/Gender/{id}', [GenderController::class, 'show']);
+    Route::put('/Gender/{id}', [GenderController::class, 'update']);
+    Route::delete('/Gender/{id}', [GenderController::class, 'destroy']);
+
+
+    Route::get('/BussinesType', [BussinesTypeController::class,'index']);
+    Route::post('/BussinesType', [BussinesTypeController::class, 'store']);
+    Route::get('/BussinesType/{id}', [BussinesTypeController::class, 'show']);
+    Route::put('/BussinesType/{id}', [BussinesTypeController::class, 'update']);
+    Route::delete('/BussinesType/{id}', [BussinesTypeController::class, 'destroy']);
+
+
+    Route::get('/Reviews', [ReviewsController::class,'index']);
+    Route::post('/Reviews', [ReviewsController::class, 'store']);
+    Route::get('/Reviews/{id}', [ReviewsController::class, 'show']);
+    Route::put('/Reviews/{id}', [ReviewsController::class, 'update']);
+    Route::delete('/Reviews/{id}', [ReviewsController::class, 'destroy']);
