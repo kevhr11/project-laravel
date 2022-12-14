@@ -1,4 +1,4 @@
-<p align="center"><img src="https://drive.google.com/file/d/1YvDDakCjhhs6EiSrO0tgw67ZeDO1RTwP/view?usp=share_link" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
