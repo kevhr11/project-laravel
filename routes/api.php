@@ -29,7 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-<<<<<<< HEAD
 /*
 |______________________________________________
 |    *Table TouristPlace
@@ -103,10 +102,6 @@ Route::put('/users/{id}', [UsersController::class,'update']);
 
 
 
-
-?>
-=======
-
 //Category
 Route::get('/category', [categoryController::class,'index']);//Show Categories
 Route::post('/category', [categoryController::class,'store']);//Create new category
@@ -130,4 +125,3 @@ Route::get('/bussinesProfile', [bussinesProfileController::class,'index']);//Sho
 Route::post('/bussinesProfile', [bussinesProfileController::class,'store']);//Create new bussinesProfile
 Route::put('/bussinesProfile/{id}', [bussinesProfileController::class,'update']);//Update bussinesProfile
 Route::delete('/bussinesProfile/{id}', [bussinesProfileController::class,'destroy']);//Delete bussinesProfile
->>>>>>> 1c69b297bb9f22b8c63cee7902db5d8a614c55e9
