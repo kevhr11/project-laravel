@@ -21,11 +21,21 @@ return new class extends Migration
             $table->integer('phoneNumber');
             $table->string('email');
             $table->string('password');
-            $table->integer('idRoll');
+
+            $table->foreignId('idRoll')
+                  ->constrained('roll_ids')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete()
+            ;
+
             $table->string('imgProfile');
             $table->integer('idGender');
             $table->string('dateOfBirth');
-            $table->integer('idToken');
+
+            $table->foreignId('idToken')
+                  ->constrained('tokens')
+                  ->cascadeOnDelete()
+                  ->cascadeOnUpdate();
 
             $table->foreignId('idSelectProfile')
                     ->constrained('select_profiles')

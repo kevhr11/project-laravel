@@ -9,4 +9,8 @@ class Gallery extends Model
 {
     use HasFactory;
     protected $fillable =['idTouristPlace','name','description'];
+
+    public function touristplaces(){
+        return $this->belongsTo(TouristPlace::class, 'idTouristPlace');
+    }
 }

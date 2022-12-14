@@ -15,11 +15,24 @@ return new class extends Migration
     {
         Schema::create('bussines_profiles', function (Blueprint $table) {
             $table->id();
-            $table->integer('idUser');
+            $table->foreignId('idUser')
+                  ->constrained('users')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
             $table->string('description');
             $table->string('location');
-            $table->integer('idGetServices');
-            $table->integer('idBussinesType');
+
+            $table->foreignId('idGetServices')
+                  ->constrained('get_services')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
+
+            $table->foreignId('idBussinesType')
+                  ->constrained('bussines_types')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete()
+            ;
+
             $table->string('certificate');
             $table->string('message');
             $table->string('reviews');

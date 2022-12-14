@@ -23,4 +23,7 @@ class TouristProfile extends Model
         return $this->belongsTo(Users::class,'idUser');
     }
 
+    public function message(){
+        return $this->hasMany(message::class, 'id');
+    }
 }

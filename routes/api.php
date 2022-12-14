@@ -190,4 +190,4 @@ route::delete('/tokens/{id}', [tokenController::class,'destroy']);
 route::get('/Galleries',[GalleryController ::class,'index']);
 route::post('/Galleries', [GalleryController::class,'store']);
 route::put('/Galleries/{id}', [GalleryController::class,'update']);
-route::delete('/Galerries/{id}', [GalleryController::class,'destroy']);
+route::delete('/Galeries/{id}', [GalleryController::class,'destroy']);

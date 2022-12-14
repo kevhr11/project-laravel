@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('idTouristPlace');
+            $table->foreignId('idTouristPlace')
+                  ->constrained('tourist_places')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnUpdate();
             $table->string('name');
             $table->string('description');
             $table->timestamps();

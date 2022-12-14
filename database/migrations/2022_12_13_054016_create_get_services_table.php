@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('idService')
                   ->constrained('services')
                   ->cascadeOnUpdate()
-                  ->cascadeOnDelete();                  
+                  ->cascadeOnDelete();
             $table->foreignId('idBussineProfile')
                   ->constrained('bussines_profiles')
                   ->cascadeOnUpdate()

@@ -28,8 +28,8 @@ class TouristPlace extends Model
         return $this->belongsTo(TouristAtt::class, 'idTouristAttractive');
     }
 
-
-
-
+    public function gallery(){
+        return $this->hasMany(Gallery::class, 'id');
+    }
 
 }

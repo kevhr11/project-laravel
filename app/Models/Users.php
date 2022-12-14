@@ -30,6 +30,14 @@ class Users extends Model
         return $this->belongsTo(selectProfile::class,'idSelectProfile');
     }
 
+    public function tokens(){
+        return $this->belongsTo(tokens::class,'idToken');
+    }
+
+    public function rollid(){
+        return $this->belongsTo(rollId::class,'idRoll');
+    }
+
 
 }
 ?>

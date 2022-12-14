@@ -24,4 +24,9 @@ class BussinesProfile extends Model
     public function getService(){
       return $this->belongsTo(GetService::class, 'idBussineProfile');
     }
+
+    public function message(){
+      return $this->hasMany(message::class, 'id');
+    }
+
 }
