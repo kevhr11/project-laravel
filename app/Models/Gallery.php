@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model
 {
     use HasFactory;
-    protected $fillable =['idTouristPlace','name','description'];
+    protected $fillable =[
+        'idTouristPlace',
+    'name',
+    'description'
+];
 
     public function touristplaces(){
         return $this->belongsTo(TouristPlace::class, 'idTouristPlace');

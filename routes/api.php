@@ -9,7 +9,6 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\serviceController;
 use App\Http\Controllers\getServiceController;
 use App\Http\Controllers\bussinesProfileController;
-
 use App\Http\Controllers\messageController;
 use App\Http\Controllers\tokenController;
 use App\Http\Controllers\GalleryController;
@@ -60,7 +59,7 @@ Route::post('/touristplaces/{id}', [TouristPlaceController::class,'destroy']);
 Route::get('/departaments', [DepartamentController::class,'index']);
 Route::post('/departaments', [DepartamentController::class,'store']);
 Route::put('/departaments/{id}', [DepartamentController::class,'update']);
-Route::delete('/departaments/{id}', [TouristPlaceController::class,'destroy']);
+Route::delete('/departaments/{id}', [DepartamentController::class,'destroy']);
 
 
 /*
@@ -71,7 +70,7 @@ Route::delete('/departaments/{id}', [TouristPlaceController::class,'destroy']);
 Route::get('/municipalities', [MunicipalitiesController::class,'index']);
 Route::post('/municipalities', [MunicipalitiesController::class,'store']);
 Route::put('/municipalities/{id}', [MunicipalitiesController::class,'update']);
-Route::delete('/municipalities/{id}', [TouristPlaceController::class,'destroy']);
+Route::delete('/municipalities/{id}', [MunicipalitiesController::class,'destroy']);
 /*
 |______________________________________________
 |    *selectProfiles
@@ -79,8 +78,8 @@ Route::delete('/municipalities/{id}', [TouristPlaceController::class,'destroy'])
 */
 Route::get('/selectprofiles', [SelectProfileController::class,'index']);
 Route::post('/selectprofiles', [SelectProfileController::class,'store']);
-Route::put('/selectprofile/{id}', [SelectProfileController::class,'update']);
-Route::delete('/selectprofile/{id}', [TouristPlaceController::class,'destroy']);
+Route::put('/selectprofiles/{id}', [SelectProfileController::class,'update']);
+Route::delete('/selectprofiles/{id}', [SelectProfileController::class,'destroy']);
 
 /*
 |______________________________________________
@@ -90,7 +89,7 @@ Route::delete('/selectprofile/{id}', [TouristPlaceController::class,'destroy']);
 Route::get('/touristprofiles', [TouristProfileController::class,'index']);
 Route::post('/touristprofiles', [TouristProfileController::class,'store']);
 Route::put('/touristprofiles/{id}', [TouristProfileController::class,'update']);
-Route::delete('/touristprofiles/{id}', [TouristPlaceController::class,'destroy']);
+Route::delete('/touristprofiles/{id}', [TouristProfileController::class,'destroy']);
 
 
 /*
@@ -101,7 +100,7 @@ Route::delete('/touristprofiles/{id}', [TouristPlaceController::class,'destroy']
 Route::get('/touristatt', [TouristAttController::class,'index']);
 Route::post('/touristatt', [TouristAttController::class,'store']);
 Route::put('/touristatt/{id}', [TouristAttController::class,'update']);
-Route::delete('/touristatt/{id}', [TouristPlaceController::class,'destroy']);
+Route::delete('/touristatt/{id}', [TouristAttController::class,'destroy']);
 
 /*
 |______________________________________________
@@ -111,7 +110,7 @@ Route::delete('/touristatt/{id}', [TouristPlaceController::class,'destroy']);
 Route::get('/users', [UsersController::class,'index']);
 Route::post('/users', [UsersController::class,'store']);
 Route::put('/users/{id}', [UsersController::class,'update']);
-Route::delete('/users/{id}', [TouristPlaceController::class,'destroy']);
+Route::delete('/users/{id}', [UsersController::class,'destroy']);
 
 
 
