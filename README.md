@@ -1,28 +1,14 @@
 <p align="center"><img src="resources/img/logo.png" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## ¿Qué es “ÍNDIGO”?
+## What is “INDIGO”?
 
-ÍNDIGO es una aplicación de apoyo y sensibilización ciudadana impulsada por los jóvenes estudiantes de él bootcamp FSJ-7 principalmente enfocado en el OBJETIVO 4 “Crear una aplicación que ayude a las personas a ofertar sus servicios en elmercado laboral permitiendo que más personas puedan contratarlos”.
+<b>INDIGO</b> is an application for citizen support and awareness promoted by the young students of the FSJ-7 bootcamp, mainly focused on OBJECTIVE 4 "Create an application that helps people offer their services in the labor market, allowing more people to hire them".
 
-El proyecto en si ha sido planteado con dos objetivos claros: el primero, hacer partícipes a la población local y población turista al apoyo de el pequeño comercio para su desarrollo económico y contribuir a su supervivencia y generar mayor empleabilidad. El segundo de los objetivo es facilitar a los emprendedores con aquellas herramientas de comunicación y publicidad que resulten de utilidad y hacerse llegar de manera efectiva a un mayor número posible de ciudadanos.
+The project itself has been raised with two clear objectives: the first, to involvethe local population and the tourist population in support of small businesses fortheir economic development and contribute to their survival and generate greateremployability. The second of the objectives is to provide entrepreneurs with thosecommunication and advertising tools that are useful and to effectively reach as manycitizens as possible. 
 
 
-## Requerimientos:
-
-Composer 
-Laravel
-Php 
-Mysql
-React
-Html
-Css
+## Requirements:
 
 - Composer 
 - Laravel
@@ -33,25 +19,24 @@ Css
 - Css
 
 
-## Características generales de ÍNDIGO 
+## General characteristics of INDIGO 
 
-La aplicación ÍNDIGO responde a las siguientes características:
+The INDIGO application responds to the following characteristics: 
+Designed especially for those merchants who wish to offer their services in the labor market, but in no case being exclusive for the rest of the population.
 
-- Destinada especialmente a aquellos comerciantes que deseen ofertar sus servicios en el mercado laboral, pero no siendo en ningún caso excluyente para el resto de la población.
+- Positive message "there is always more to discover". 
 
-- Mensaje en positivo “siempre hay más por descubrir”.
+- The target audience of the application is generally made up, although some materials have been designed to reach the microfinance sector. 
 
-- El público objetivo de la aplicación se encuentra conformado con carácter general, sin bien algunos materiales han sido deiñeados para llegar al sector micro financiero.
+- The materials and tools for creation are the following: 
 
-- Los materiales y herramientas para la creación son los siguientes:
-
-### Tecnologías implementadas 
+### Technologies implemented 
 
 - Php
 - Laravel 
 - MySQL
 
-### Tecnologías a implementar 
+### Technologies to implement 
 
 - Html 
 - Css
@@ -59,4 +44,4 @@ La aplicación ÍNDIGO responde a las siguientes características:
 - React
 
 
-El documento con los diagramas pueden ser descargados y visualizados a través de  **[diagramas relacionales](https://miro.com/app/board/uXjVP5BBITs=/?share_link_id=142775396146)**, estando disponibles para facilitar su comprensión y adaptación por parte de los usuarios.
+The document with the diagrams can be downloaded and viewed through **[relations diagrams](https://miro.com/app/board/uXjVP5BBITs=/?share_link_id=142775396146)**, being available to facilitate their understanding and adaptation by users.
