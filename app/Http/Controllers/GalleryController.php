@@ -37,7 +37,7 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $Gallery = new Gallery();
-        $Gallery->idTouristProfile = $request->idTouristProfile;
+        $Gallery->idTouristPlace = $request->idTouristPlace;
         $Gallery->name = $request->name;
         $Gallery->description = $request->description;
 
@@ -76,7 +76,7 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $Gallery = Gallery::findOrFail($request->id);
-        $Gallery->idTouristProfile = $request->idTouristProfile;
+        $Gallery->idTouristPlace = $request->idTouristPlace;
         $Gallery->name = $request->name;
         $Gallery->description = $request->description;
 

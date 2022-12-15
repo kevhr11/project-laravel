@@ -40,7 +40,6 @@ class bussinesProfileController extends Controller
         $bussineProfile->idUser = $request->idUser;
         $bussineProfile->description = $request->description;
         $bussineProfile->location = $request->location;
-        $bussineProfile->idGetServices = $request->idGetServices;
         $bussineProfile->idBussinesType = $request->idBussinesType;
         $bussineProfile->certificate = $request->certificate;
         $bussineProfile->message = $request->message;
@@ -86,7 +85,6 @@ class bussinesProfileController extends Controller
         $bussineProfile->idUser = $request->idUser;
         $bussineProfile->description = $request->description;
         $bussineProfile->location = $request->location;
-        $bussineProfile->idGetServices = $request->idGetServices;
         $bussineProfile->idBussinesType = $request->idBussinesType;
         $bussineProfile->certificate = $request->certificate;
         $bussineProfile->message = $request->message;

@@ -30,7 +30,10 @@ class ReviewsController extends Controller
     {
         //
         $reviews = new Reviews();
-        $reviews->name = $request->name;
+        $reviews->idBussinesProfile = $request->idBussinesProfile;
+        $reviews->idTouristProfile = $request->idTouristProfile;        
+        $reviews->description = $request->description;        
+        $reviews->score = $request->score;  
 
         $reviews->save();
     }
@@ -59,7 +62,11 @@ class ReviewsController extends Controller
     {
         //
         $reviews = Reviews::findOrFail($request->id);
-        $reviews->name = $request->name;
+        $reviews = new Reviews();
+        $reviews->idBussinesProfile = $request->idBussinesProfile;
+        $reviews->idTouristProfile = $request->idTouristProfile;        
+        $reviews->description = $request->description;        
+        $reviews->score = $request->score;  
 
         $reviews->save();
         return $reviews;
