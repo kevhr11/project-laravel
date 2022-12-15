@@ -83,7 +83,7 @@ class TouristAttController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $touristAtt  = TouristAtt::findOrFail($id);
+        $touristAtt  = TouristAtt::findOrFail($request->id);
 
         $touristAtt->name = $request->name;
         $touristAtt->idStatu = $request->idStatu;

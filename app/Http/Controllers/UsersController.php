@@ -92,10 +92,10 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = Users::findOrFail($id);
+        $user = Users::findOrFail($request->id);
 
         $user->name = $request->name;
-        $user->lastName = $request->Lastname;
+        $user->lastName = $request->lastName;
         $user->DUI = $request->DUI;
         $user->phoneNumber = $request->phoneNumber;
         $user->email = $request->email;

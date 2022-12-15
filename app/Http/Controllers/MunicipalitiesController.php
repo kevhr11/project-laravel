@@ -82,7 +82,7 @@ class MunicipalitiesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $municipalities = Municipalitie::findOrAll($id);
+        $municipalities = Municipalitie::findOrFail($request->id);
         $municipalities->name = $request->name;
         $municipalities->idDepartaments = $request->idDepartaments;
 
