@@ -43,7 +43,7 @@ class serviceController extends Controller
         $service->price = $request->price;
         $service->img = $request->img;
         $service->idStatus = $request->idStatus;
-        
+
         $service->save();
     }
 
