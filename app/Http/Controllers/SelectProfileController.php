@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\selectProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SelectProfileController extends Controller
 {
@@ -38,12 +39,26 @@ class SelectProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:60|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Create new SelectProfile
         $selectprofile = new selectProfile();
         $selectprofile->name = $request->name;
 
         $selectprofile->save();
-        return $selectprofile;
+        return response()->json($selectprofile, status:201);
     }
 
     /**
@@ -77,15 +92,26 @@ class SelectProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:60|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Update new SelectProfile
         $selectprofile = selectProfile::findOrFail($id);
-
         $selectprofile->name = $request->name;
-
         $selectprofile->save();
 
-        return $selectprofile;
-
+        return response()->json($selectprofile, status:405);
     }
 
     /**
@@ -96,6 +122,8 @@ class SelectProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete SelectProfile
+        $selectprofile = selectProfile::destroy($id);
+        return $selectprofile;
     }
 }

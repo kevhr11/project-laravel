@@ -11,7 +11,6 @@ class Municipalitie extends Model
     protected $fillable = [
         'name',
         'idDepartaments'
-
     ];
 
 

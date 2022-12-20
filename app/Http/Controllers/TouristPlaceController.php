@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TouristPlace;
+use Illuminate\Support\Facades\Validator;
 
 class TouristPlaceController extends Controller
 {
@@ -41,7 +42,27 @@ class TouristPlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'namePlace'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'idMunicipalities'=>'required',
+          'description'=>'required|max:50|string',
+          'gallery'=>'required|max:50|string',
+          'score'=>'required',
+          'idTouristPlaceType'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Create new TouristPlace
         $TouristPlace = new TouristPlace();
         $TouristPlace->namePlace = $request->namePlace;
         $TouristPlace->location = $request->location;
@@ -49,11 +70,10 @@ class TouristPlaceController extends Controller
         $TouristPlace->description = $request->description;
         $TouristPlace->gallery = $request->gallery;
         $TouristPlace->score = $request->score;
-        $TouristPlace->idTouristAttractive = $request->idTouristAttractive;
+        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
 
         $TouristPlace->save();
-
-        return $TouristPlace;
+        return response()->json($TouristPlace, status:201);
     }
 
     /**
@@ -87,7 +107,27 @@ class TouristPlaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'namePlace'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'idMunicipalities'=>'required',
+          'description'=>'required|max:50|string',
+          'gallery'=>'required|max:50|string',
+          'score'=>'required',
+          'idTouristPlaceType'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Update new TouristPlace
         $TouristPlace = TouristPlace::findOrFail($id);
         $TouristPlace->namePlace = $request->namePlace;
         $TouristPlace->location = $request->location;
@@ -95,11 +135,11 @@ class TouristPlaceController extends Controller
         $TouristPlace->description = $request->description;
         $TouristPlace->gallery = $request->gallery;
         $TouristPlace->score = $request->score;
-        $TouristPlace->idTouristAttractive = $request->idTouristAttractive;
+        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
 
         $TouristPlace->save();
 
-        return $TouristPlace;
+        return response()->json($TouristPlace, status:405);
     }
 
     /**
@@ -110,6 +150,8 @@ class TouristPlaceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete TouristPlace
+        $TouristPlace = TouristPlace::destroy($id);
+        return $TouristPlace;
     }
 }

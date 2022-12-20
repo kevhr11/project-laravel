@@ -15,8 +15,7 @@ class TouristProfile extends Model
         'location',
         'message',
         'reviews',
-        'idTouristPlaces',
-        'idGallery'
+        'idTouristPlaces'
     ];
 
     public function users(){

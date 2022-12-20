@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TouristProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TouristProfileController extends Controller
 {
@@ -38,22 +39,36 @@ class TouristProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $touristprofile = new TouristProfile();
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idUser'=>'required',
+          'description'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'message'=>'required|max:50|string',
+          'reviews'=>'required|max:50|string',
+          'idTouristPlaces'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
 
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Create new TouristProfile
+        $touristprofile = new TouristProfile();
         $touristprofile->idUser = $request->idUser;
         $touristprofile->description = $request->description;
         $touristprofile->location = $request->location;
         $touristprofile->message = $request->message;
         $touristprofile->reviews = $request->reviews;
         $touristprofile->idTouristPlaces = $request->idTouristPlaces;
-        $touristprofile->idGallery = $request->idGallery;
 
         $touristprofile->save();
-
-        return $touristprofile;
-
-
+        return response()->json($touristprofile, status:201);
     }
 
     /**
@@ -87,20 +102,37 @@ class TouristProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $touristprofile = TouristProfile::findOrFail($id);
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idUser'=>'required',
+          'description'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'message'=>'required|max:50|string',
+          'reviews'=>'required|max:50|string',
+          'idTouristPlaces'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
 
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Update new TouristProfile
+        $touristprofile = TouristProfile::findOrFail($id);
         $touristprofile->idUser = $request->idUser;
         $touristprofile->description = $request->description;
         $touristprofile->location = $request->location;
         $touristprofile->message = $request->message;
         $touristprofile->reviews = $request->reviews;
         $touristprofile->idTouristPlaces = $request->idTouristPlaces;
-        $touristprofile->idGallery = $request->idGallery;
 
         $touristprofile->save();
 
-        return $touristprofile;
+        return response()->json($touristprofile, status:405);
 
     }
 
@@ -112,6 +144,8 @@ class TouristProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete TouristProfile
+        $touristprofile = TouristProfile::destroy($id);
+        return $touristprofile;
     }
 }

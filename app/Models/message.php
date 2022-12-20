@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class message extends Model
 {
     use HasFactory;
-    protected $fillable =['idBussinesProfile','idTouristProfile','name','input','output'];
+    protected $fillable =[
+      'idBussinesProfile',
+      'idTouristProfile',
+      'name',
+      'input',
+      'output'
+    ];
 
     public function bussinesprofile(){
         return $this->belongsTo(BussinesProfile::class, 'idBussinesProfile');
@@ -18,4 +24,3 @@ class message extends Model
         return $this->belongsTo(TouristProfile::class, 'idTouristProfile');
     }
 }
-
