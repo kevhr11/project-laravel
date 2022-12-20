@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\BussinesType;
 use Illuminate\Http\Request;
-use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 
-class categoryController extends Controller
+class BussinesTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +16,9 @@ class categoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return $category;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
         //
+        $bussinesType = BussinesType::all();
+        return $bussinesType;
     }
 
     /**
@@ -39,11 +31,11 @@ class categoryController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'name'=>'required|max:10|string'
+          'name'=>'required|max:50|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
-          'max'=>'El nombre es :attribute largo',
+          'max'=>'El campo :attribute es muy largo',
           'string'=>'El campo :attribute no es una cadena de texto'
         ]);
         
@@ -51,12 +43,12 @@ class categoryController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Create new Category      
-        $category = new Category();
-        $category->name = $request->name;
+        //Create new BussineType
+        $bussinesType = new BussinesType();
+        $bussinesType->name = $request->name;
 
-        $category->save();
-        return response()->json($category, status:201);
+        $bussinesType->save();
+        return response()->json($bussinesType, status:201);
     }
 
     /**
@@ -68,17 +60,8 @@ class categoryController extends Controller
     public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $bussinesType = BussinesType::find($id);
+        return $bussinesType;
     }
 
     /**
@@ -92,7 +75,7 @@ class categoryController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'name'=>'required|max:10|string'
+          'name'=>'required|max:50|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -104,12 +87,12 @@ class categoryController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Update new Category
-        $category = Category::findOrFail($request->id);
-        $category->name = $request->name;
+        //Update new BussineType
+        $bussinesType = BussinesType::findOrFail($request->id);
+        $bussinesType->name = $request->name;
 
-        $category->save();
-        return response()->json($category, status:201);
+        $bussinesType->save();
+        return response()->json($bussinesType, status:201);
     }
 
     /**
@@ -120,8 +103,8 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Category
-        $category = Category::destroy($id);
-        return $category;
+        //Delete BussineType
+        $bussinesType = BussinesType::destroy($id);
+        return $bussinesType;
     }
 }

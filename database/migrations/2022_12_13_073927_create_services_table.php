@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('get_services', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idService')
-                  ->constrained('services')
+            $table->foreignId('idCategory')
+                  ->constrained('categories')
                   ->cascadeOnUpdate()
-                  ->cascadeOnDelete();                  
-            $table->foreignId('idBussineProfile')
+                  ->cascadeOnDelete();
+            $table->string('name');
+            $table->string('description');
+            $table->float('price');
+            $table->string('img');
+            $table->foreignId('idBussinesProfile')
                   ->constrained('bussines_profiles')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
@@ -34,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('get_services');
+        Schema::dropIfExists('services');
     }
 };

@@ -13,26 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bussines_profiles', function (Blueprint $table) {
+        Schema::create('tourist_places', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idUser')
-                  ->constrained('users')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
-            $table->string('description');
+            $table->string('namePlace');
             $table->string('location');
-
-            $table->foreignId('idBussinesType')
-                  ->constrained('bussines_types')
+            $table->foreignId('idMunicipalities')
+                  ->constrained('municipalities')
                   ->cascadeOnUpdate()
-                  ->cascadeOnDelete()
+                  ->cascadeOnDelete ()
             ;
+            $table->string('description');
 
-            $table->string('message');
-            $table->string('reviews');
-            $table->integer('idTourisPlace');
+            $table->string('gallery');
             $table->integer('score');
             $table->timestamps();
+            $table->foreignId('idTouristPlaceType')
+            ->constrained('tourist_place_types')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete()
+      ;
         });
     }
 
@@ -43,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bussines_profiles');
+        Schema::dropIfExists('tourist_places');
     }
 };

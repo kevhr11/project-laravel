@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TouristProfile;
 use Illuminate\Http\Request;
-use App\Models\Service;
 use Illuminate\Support\Facades\Validator;
 
-class serviceController extends Controller
+class TouristProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,10 @@ class serviceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return $services;
+        //
+        $touristprofile = TouristProfile::all();
+
+        return $touristprofile;
     }
 
     /**
@@ -39,12 +41,12 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
+          'idUser'=>'required',
           'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'location'=>'required|max:50|string',
+          'message'=>'required|max:50|string',
+          'reviews'=>'required|max:50|string',
+          'idTouristPlaces'=>'required'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -56,17 +58,17 @@ class serviceController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Create new Service  
-        $service = new Service();
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
-        
-        $service->save();
-        return response()->json($service, status:201);
+        //Create new TouristProfile
+        $touristprofile = new TouristProfile();
+        $touristprofile->idUser = $request->idUser;
+        $touristprofile->description = $request->description;
+        $touristprofile->location = $request->location;
+        $touristprofile->message = $request->message;
+        $touristprofile->reviews = $request->reviews;
+        $touristprofile->idTouristPlaces = $request->idTouristPlaces;
+
+        $touristprofile->save();
+        return response()->json($touristprofile, status:201);
     }
 
     /**
@@ -102,12 +104,12 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
+          'idUser'=>'required',
           'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'location'=>'required|max:50|string',
+          'message'=>'required|max:50|string',
+          'reviews'=>'required|max:50|string',
+          'idTouristPlaces'=>'required'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -119,17 +121,19 @@ class serviceController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Update new Service 
-        $service = Service::findOrFail($request->id);
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
+        //Update new TouristProfile
+        $touristprofile = TouristProfile::findOrFail($id);
+        $touristprofile->idUser = $request->idUser;
+        $touristprofile->description = $request->description;
+        $touristprofile->location = $request->location;
+        $touristprofile->message = $request->message;
+        $touristprofile->reviews = $request->reviews;
+        $touristprofile->idTouristPlaces = $request->idTouristPlaces;
 
-        $service->save();
-        return response()->json($service, status:405);
+        $touristprofile->save();
+
+        return response()->json($touristprofile, status:405);
+
     }
 
     /**
@@ -140,8 +144,8 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Service
-        $service = Service::destroy($id);
-        return $service;
+        //Delete TouristProfile
+        $touristprofile = TouristProfile::destroy($id);
+        return $touristprofile;
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departament;
 use Illuminate\Http\Request;
-use App\Models\Service;
 use Illuminate\Support\Facades\Validator;
 
-class serviceController extends Controller
+class DepartamentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,11 @@ class serviceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return $services;
+        //create controller departaments
+        $departament = Departament::all();
+
+        return $departament ;
+
     }
 
     /**
@@ -26,7 +29,8 @@ class serviceController extends Controller
      */
     public function create()
     {
-        //
+
+
     }
 
     /**
@@ -39,12 +43,7 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
-          'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'name'=>'required|max:50|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -56,17 +55,12 @@ class serviceController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Create new Service  
-        $service = new Service();
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
-        
-        $service->save();
-        return response()->json($service, status:201);
+        //Create new departament
+        $departament = new Departament();
+        $departament->name = $request->name;
+
+        $departament->save();
+        return response()->json($departament, status:201);
     }
 
     /**
@@ -102,12 +96,7 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
-          'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'name'=>'required|max:50|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -119,17 +108,12 @@ class serviceController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Update new Service 
-        $service = Service::findOrFail($request->id);
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
+        //Update new departament
+        $departament = Departament::findOrFail($id);
+        $departament->name = $request->name;
 
-        $service->save();
-        return response()->json($service, status:405);
+        $departament->save();
+        return response()->json($departament, status:405);
     }
 
     /**
@@ -140,8 +124,8 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Service
-        $service = Service::destroy($id);
-        return $service;
+        //Delete Departament
+        $departament = Departament::destroy($id);
+        return $departament;
     }
 }

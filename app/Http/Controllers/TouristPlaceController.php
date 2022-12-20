@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
+use App\Models\TouristPlace;
 use Illuminate\Support\Facades\Validator;
 
-class serviceController extends Controller
+class TouristPlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,13 @@ class serviceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return $services;
+        // get TouristPlace
+
+        $TouristPlace = TouristPlace::all();
+
+        return $TouristPlace;
+
+
     }
 
     /**
@@ -39,12 +44,13 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
+          'namePlace'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'idMunicipalities'=>'required',
           'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'gallery'=>'required|max:50|string',
+          'score'=>'required',
+          'idTouristPlaceType'=>'required'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -56,17 +62,18 @@ class serviceController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Create new Service  
-        $service = new Service();
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
-        
-        $service->save();
-        return response()->json($service, status:201);
+        //Create new TouristPlace
+        $TouristPlace = new TouristPlace();
+        $TouristPlace->namePlace = $request->namePlace;
+        $TouristPlace->location = $request->location;
+        $TouristPlace->idMunicipalities = $request->idMunicipalities;
+        $TouristPlace->description = $request->description;
+        $TouristPlace->gallery = $request->gallery;
+        $TouristPlace->score = $request->score;
+        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
+
+        $TouristPlace->save();
+        return response()->json($TouristPlace, status:201);
     }
 
     /**
@@ -102,12 +109,13 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
+          'namePlace'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'idMunicipalities'=>'required',
           'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'gallery'=>'required|max:50|string',
+          'score'=>'required',
+          'idTouristPlaceType'=>'required'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -119,17 +127,19 @@ class serviceController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Update new Service 
-        $service = Service::findOrFail($request->id);
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
+        //Update new TouristPlace
+        $TouristPlace = TouristPlace::findOrFail($id);
+        $TouristPlace->namePlace = $request->namePlace;
+        $TouristPlace->location = $request->location;
+        $TouristPlace->idMunicipalities = $request->idMunicipalities;
+        $TouristPlace->description = $request->description;
+        $TouristPlace->gallery = $request->gallery;
+        $TouristPlace->score = $request->score;
+        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
 
-        $service->save();
-        return response()->json($service, status:405);
+        $TouristPlace->save();
+
+        return response()->json($TouristPlace, status:405);
     }
 
     /**
@@ -140,8 +150,8 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Service
-        $service = Service::destroy($id);
-        return $service;
+        //Delete TouristPlace
+        $TouristPlace = TouristPlace::destroy($id);
+        return $TouristPlace;
     }
 }

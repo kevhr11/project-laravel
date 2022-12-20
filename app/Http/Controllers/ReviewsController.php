@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Reviews;
 use Illuminate\Http\Request;
-use App\Models\Service;
 use Illuminate\Support\Facades\Validator;
 
-class serviceController extends Controller
+class ReviewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +16,9 @@ class serviceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return $services;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
         //
+        $reviews = Reviews::all();
+        return $reviews;
     }
 
     /**
@@ -39,12 +31,10 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
+          'idBussinesProfile'=>'required',
+          'idTouristProfile'=>'required',
           'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'score'=>'required|max:50|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -56,17 +46,15 @@ class serviceController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Create new Service  
-        $service = new Service();
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
-        
-        $service->save();
-        return response()->json($service, status:201);
+        //Create new Review
+        $reviews = new Reviews();
+        $reviews->idBussinesProfile = $request->idBussinesProfile;
+        $reviews->idTouristProfile = $request->idTouristProfile;        
+        $reviews->description = $request->description;        
+        $reviews->score = $request->score;  
+
+        $reviews->save();
+        return response()->json($reviews, status:201);
     }
 
     /**
@@ -78,17 +66,8 @@ class serviceController extends Controller
     public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $reviews = Reviews::find($id);
+        return $reviews;
     }
 
     /**
@@ -102,34 +81,31 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
+          'idBussinesProfile'=>'required',
+          'idTouristProfile'=>'required',
           'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'score'=>'required|max:50|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
           'max'=>'El nombre es :attribute largo',
           'string'=>'El campo :attribute no es una cadena de texto'
         ]);
-
+        
         if ($validator->fails()) {
           return response()->json($validator->errors());
         }
         
-        //Update new Service 
-        $service = Service::findOrFail($request->id);
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
+        //Update new Review
+        $reviews = Reviews::findOrFail($request->id);
+        $reviews = new Reviews();
+        $reviews->idBussinesProfile = $request->idBussinesProfile;
+        $reviews->idTouristProfile = $request->idTouristProfile;        
+        $reviews->description = $request->description;        
+        $reviews->score = $request->score;  
 
-        $service->save();
-        return response()->json($service, status:405);
+        $reviews->save();
+        return response()->json($reviews, status:405);
     }
 
     /**
@@ -140,8 +116,8 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Service
-        $service = Service::destroy($id);
-        return $service;
+        //Delete Reviews
+        $reviews = Reviews::destroy($id);
+        return $reviews;
     }
 }
