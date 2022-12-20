@@ -95,9 +95,6 @@ class MunicipalitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
-        //
-=======
         //Validate data
         $validator = Validator::make($request->all(), [
           'name'=>'required|max:10|string',
@@ -114,7 +111,6 @@ class MunicipalitiesController extends Controller
         }
 
         //Update new Municipality
->>>>>>> kevin
         $municipalities = Municipalitie::findOrFail($request->id);
         $municipalities->name = $request->name;
         $municipalities->idDepartaments = $request->idDepartaments;

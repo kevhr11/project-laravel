@@ -113,10 +113,6 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
-        //
-        $user = Users::findOrFail($request->id);
-=======
         //Validate data
         $validator = Validator::make($request->all(), [
           'name'=>'required|max:50|string',
@@ -136,7 +132,6 @@ class UsersController extends Controller
           'max'=>'El nombre es :attribute largo',
           'string'=>'El campo :attribute no es una cadena de texto'
         ]);
->>>>>>> kevin
 
         if ($validator->fails()) {
           return response()->json($validator->errors());
@@ -170,7 +165,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //Delete User
-        $user = User::destroy($id);
+        $user = Users::destroy($id);
         return $user;
     }
 }
