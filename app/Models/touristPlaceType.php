@@ -5,22 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TouristAtt extends Model
+class touristPlaceType extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'idStatu'
+        'status'
     ];
 
     public function touristplace(){
         return $this->hasMany(TouristPlace::class,'id');
     }
-
-    public function status(){
-        return $this->belongsTo(Status::class,'idStatu');
-    }
-
 
 }

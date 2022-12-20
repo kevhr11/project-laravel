@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('gallery');
             $table->integer('score');
             $table->timestamps();
-            $table->foreignId('idTouristAttractive')
-            ->constrained('tourist_atts')
+            $table->foreignId('idTouristPlaceType')
+            ->constrained('tourist_place_types')
             ->cascadeOnUpdate()
             ->cascadeOnDelete()
       ;

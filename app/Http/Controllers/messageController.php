@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\message;
+use Illuminate\Support\Facades\Validator;
 
 class messageController extends Controller
 {
@@ -36,6 +37,25 @@ class messageController extends Controller
      */
     public function store(Request $request)
     {
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idBussinesProfile'=>'required',
+          'idTouristProfile'=>'required',
+          'name'=>'required|max:50|string',
+          'input'=>'required|max:50|string',
+          'output'=>'required|max:50|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+      
+        //Create new Message
         $message = new message();
         $message->idBussinesProfile = $request->idBussinesProfile;
         $message->idTouristProfile = $request->idTouristProfile;
@@ -44,6 +64,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
+        return response()->json($message, status:201);
     }
 
     /**
@@ -77,6 +98,25 @@ class messageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idBussinesProfile'=>'required',
+          'idTouristProfile'=>'required',
+          'name'=>'required|max:50|string',
+          'input'=>'required|max:50|string',
+          'output'=>'required|max:50|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+      
+        //Update new Message
         $message = new message();
         $message->idBussinesProfile = $request->idBussinesProfile;
         $message->idTouristProfile = $request->idTouristProfile;
@@ -85,7 +125,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
-        return $message;
+        return response()->json($message, status:405);
     }
 
     /**
@@ -96,6 +136,7 @@ class messageController extends Controller
      */
     public function destroy($id)
     {
+        //Delete Message
         $message = message::destroy($id);
         return $message;
     }

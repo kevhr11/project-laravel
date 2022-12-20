@@ -17,9 +17,8 @@ class Users extends Model
         'phoneNumber',
         'email',
         'password',
-        'idRoll',
         'imgProfile',
-        'idGender',
+        'gender',
         'dateOfBirth',
         'idToken',
         'idSelectProfile',
@@ -33,15 +32,6 @@ class Users extends Model
     public function tokens(){
         return $this->belongsTo(tokens::class,'idToken');
     }
-
-    public function roll(){
-        return $this->belongsTo(rollId::class,'idRoll');
-    }
-
-    public function gender(){
-        return $this->belongsTo(Gender::class,'idGender');
-    }
-
 
 }
 ?>

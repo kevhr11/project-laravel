@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tokens;
+use Illuminate\Support\Facades\Validator;
 
 class tokenController extends Controller
 {
@@ -36,11 +37,28 @@ class tokenController extends Controller
      */
     public function store(Request $request)
     {
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:10|string',
+          'key'=>'required|max:10|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Create new Token
         $token = new tokens();
         $token->name = $request->name;
         $token->key = $request->key;
 
         $token->save();
+        return response()->json($token, status:201);
     }
 
     /**
@@ -74,13 +92,28 @@ class tokenController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:10|string',
+          'key'=>'required|max:10|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors());
+        }
+        
+        //Update new Token
         $token = tokens::findOrFail($id);
         $token->name =$request->name;
         $token->key =$request->key;
-       
-
+        
         $token->save();
-        return $token;
+        return response()->json($token, status:405);
     }
 
     /**
@@ -91,6 +124,7 @@ class tokenController extends Controller
      */
     public function destroy($id)
     {
+        //Delete Token
         $token = tokens::destroy($id);
         return $token;
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departament;
+use App\Models\touristPlaceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class DepartamentController extends Controller
+class tourisPlaceTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,9 @@ class DepartamentController extends Controller
      */
     public function index()
     {
-        //create controller departaments
-        $departament = Departament::all();
+        $tourisPlaceType = touristPlaceType::all();
 
-        return $departament ;
-
+        return $tourisPlaceType;
     }
 
     /**
@@ -29,8 +27,7 @@ class DepartamentController extends Controller
      */
     public function create()
     {
-
-
+        //
     }
 
     /**
@@ -43,7 +40,8 @@ class DepartamentController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'name'=>'required|max:50|string'
+          'name'=>'required|max:10|string',
+          'status'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -55,12 +53,13 @@ class DepartamentController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Create new departament
-        $departament = new Departament();
-        $departament->name = $request->name;
+        //Create new TourisPlaceType
+        $tourisPlaceType = new touristPlaceType();
+        $tourisPlaceType->name = $request->name;
+        $tourisPlaceType->status = $request->status;
 
-        $departament->save();
-        return response()->json($departament, status:201);
+        $tourisPlaceType->save();
+        return response()->json($tourisPlaceType, status:201);
     }
 
     /**
@@ -96,7 +95,8 @@ class DepartamentController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'name'=>'required|max:50|string'
+          'name'=>'required|max:10|string',
+          'status'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -108,12 +108,15 @@ class DepartamentController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Update new departament
-        $departament = Departament::findOrFail($id);
-        $departament->name = $request->name;
+        //Update new TourisPlaceType
+        $tourisPlaceType  = touristPlaceType::findOrFail($request->id);
+        $tourisPlaceType = new touristPlaceType();
+        $tourisPlaceType->name = $request->name;
+        $tourisPlaceType->status = $request->status;
 
-        $departament->save();
-        return response()->json($departament, status:405);
+        $tourisPlaceType->save();
+
+        return response()->json($tourisPlaceType, status:405);
     }
 
     /**
@@ -124,8 +127,8 @@ class DepartamentController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Departament
-        $departament = Departament::destroy($id);
-        return $departament;
+        //Delete TouristType
+        $tourisPlaceType = touristPlaceType::destroy($id);
+        return $tourisPlaceType;
     }
 }

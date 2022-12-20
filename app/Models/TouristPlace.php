@@ -14,9 +14,8 @@ class TouristPlace extends Model
         'location',
         'idMunicipalities',
         'description',
-        'gallery',
         'score',
-        'idTouristAttractive'
+        'idTouristPlaceType'
     ];
 
 
@@ -25,11 +24,6 @@ class TouristPlace extends Model
     }
 
     public function touristatt(){
-        return $this->belongsTo(TouristAtt::class, 'idTouristAttractive');
+        return $this->belongsTo(touristPlaceType::class, 'idTouristPlaceType');
     }
-
-    public function gallery(){
-        return $this->hasMany(Gallery::class, 'id');
-    }
-
 }
