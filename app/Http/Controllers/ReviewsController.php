@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Reviews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class ReviewsController extends Controller
 {
@@ -43,7 +44,7 @@ class ReviewsController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Create new Review
@@ -54,7 +55,7 @@ class ReviewsController extends Controller
         $reviews->score = $request->score;  
 
         $reviews->save();
-        return response()->json($reviews, status:201);
+        return response()->json($reviews, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -93,7 +94,7 @@ class ReviewsController extends Controller
         ]);
         
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Update new Review
@@ -105,7 +106,7 @@ class ReviewsController extends Controller
         $reviews->score = $request->score;  
 
         $reviews->save();
-        return response()->json($reviews, status:405);
+        return response()->json($reviews, Response::HTTP_ACCEPTED);
     }
 
     /**

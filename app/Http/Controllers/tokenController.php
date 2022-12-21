@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\tokens;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class tokenController extends Controller
 {
@@ -49,7 +50,7 @@ class tokenController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Create new Token
@@ -58,7 +59,7 @@ class tokenController extends Controller
         $token->key = $request->key;
 
         $token->save();
-        return response()->json($token, status:201);
+        return response()->json($token, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -104,7 +105,7 @@ class tokenController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Update new Token
@@ -113,7 +114,7 @@ class tokenController extends Controller
         $token->key =$request->key;
         
         $token->save();
-        return response()->json($token, status:405);
+        return response()->json($token, Response::HTTP_ACCEPTED);
     }
 
     /**

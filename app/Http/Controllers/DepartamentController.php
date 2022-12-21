@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Departament;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class DepartamentController extends Controller
 {
@@ -52,7 +53,7 @@ class DepartamentController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Create new departament
@@ -60,7 +61,7 @@ class DepartamentController extends Controller
         $departament->name = $request->name;
 
         $departament->save();
-        return response()->json($departament, status:201);
+        return response()->json($departament, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -105,7 +106,7 @@ class DepartamentController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Update new departament
@@ -113,7 +114,7 @@ class DepartamentController extends Controller
         $departament->name = $request->name;
 
         $departament->save();
-        return response()->json($departament, status:405);
+        return response()->json($departament, Response::HTTP_ACCEPTED);
     }
 
     /**
