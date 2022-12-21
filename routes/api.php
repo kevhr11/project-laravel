@@ -78,8 +78,8 @@ Route::delete('/municipalities/{id}', [MunicipalitiesController::class,'destroy'
 */
 Route::get('/selectprofiles', [SelectProfileController::class,'index']);
 Route::post('/selectprofiles', [SelectProfileController::class,'store']);
-Route::put('/selectprofiles/{id}', [SelectProfileController::class,'update']);
-Route::delete('/selectprofiles/{id}', [SelectProfileController::class,'destroy']);
+Route::put('/selectprofile/{id}', [SelectProfileController::class,'update']);
+Route::delete('/selectprofile/{id}', [SelectProfileController::class,'destroy']);
 
 /*
 |______________________________________________
