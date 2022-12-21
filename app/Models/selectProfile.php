@@ -13,7 +13,7 @@ class selectProfile extends Model
     ];
 
     public function users(){
-        return $this->hasMany(Users::class,'id');
+        return $this->hasMany(User::class,'id');
     }
 
 }

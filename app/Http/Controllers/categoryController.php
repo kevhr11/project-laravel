@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class categoryController extends Controller
 {
@@ -49,7 +48,7 @@ class categoryController extends Controller
         ]);
         
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Create new Category      
@@ -57,7 +56,7 @@ class categoryController extends Controller
         $category->name = $request->name;
 
         $category->save();
-        return response()->json($category, Response::HTTP_ACCEPTED);
+        return response()->json($category, status:201);
     }
 
     /**
@@ -102,7 +101,7 @@ class categoryController extends Controller
         ]);
         
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Update new Category
@@ -110,7 +109,7 @@ class categoryController extends Controller
         $category->name = $request->name;
 
         $category->save();
-        return response()->json($category, Response::HTTP_ACCEPTED);
+        return response()->json($category, status:201);
     }
 
     /**

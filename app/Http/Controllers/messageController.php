@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\message;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class messageController extends Controller
 {
@@ -53,7 +52,7 @@ class messageController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
       
         //Create new Message
@@ -65,7 +64,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
-        return response()->json($message, Response::HTTP_ACCEPTED);
+        return response()->json($message, status:201);
     }
 
     /**
@@ -114,7 +113,7 @@ class messageController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
       
         //Update new Message
@@ -126,7 +125,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
-        return response()->json($message, Response::HTTP_ACCEPTED);
+        return response()->json($message, status:405);
     }
 
     /**

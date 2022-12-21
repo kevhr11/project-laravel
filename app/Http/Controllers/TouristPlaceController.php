@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TouristPlace;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class TouristPlaceController extends Controller
 {
@@ -60,7 +59,7 @@ class TouristPlaceController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Create new TouristPlace
@@ -74,7 +73,7 @@ class TouristPlaceController extends Controller
         $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
 
         $TouristPlace->save();
-        return response()->json($TouristPlace, Response::HTTP_ACCEPTED);
+        return response()->json($TouristPlace, status:201);
     }
 
     /**
@@ -125,7 +124,7 @@ class TouristPlaceController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Update new TouristPlace
@@ -140,7 +139,7 @@ class TouristPlaceController extends Controller
 
         $TouristPlace->save();
 
-        return response()->json($TouristPlace, Response::HTTP_ACCEPTED);
+        return response()->json($TouristPlace, status:405);
     }
 
     /**

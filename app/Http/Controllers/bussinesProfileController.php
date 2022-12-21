@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BussinesProfile;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class bussinesProfileController extends Controller
 {
@@ -56,7 +55,7 @@ class bussinesProfileController extends Controller
         ]);
         
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Create new BussineProfile
@@ -71,7 +70,7 @@ class bussinesProfileController extends Controller
         $bussineProfile->score = $request->score;
 
         $bussineProfile->save();
-        return response()->json($bussineProfile, Response::HTTP_ACCEPTED);
+        return response()->json($bussineProfile, status:201);
     }
 
     /**
@@ -123,7 +122,7 @@ class bussinesProfileController extends Controller
         ]);
         
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Update new BussineProfile
@@ -138,7 +137,7 @@ class bussinesProfileController extends Controller
         $bussineProfile->score = $request->score;
 
         $bussineProfile->save();
-        return response()->json($bussineProfile, Response::HTTP_ACCEPTED);
+        return response()->json($bussineProfile, status:201);
     }
 
     /**
