@@ -28,7 +28,6 @@ return new class extends Migration
                   ->cascadeOnDelete()
             ;
 
-            $table->string('certificate');
             $table->string('message');
             $table->string('reviews');
             $table->integer('idTourisPlace');

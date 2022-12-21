@@ -9,12 +9,12 @@ class message extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'idBussinesProfile',
-    'idTouristProfile',
-    'name',
-    'input',
-    'output'
-];
+      'idBussinesProfile',
+      'idTouristProfile',
+      'name',
+      'input',
+      'output'
+    ];
 
     public function bussinesprofile(){
         return $this->belongsTo(BussinesProfile::class, 'idBussinesProfile');
@@ -24,4 +24,3 @@ class message extends Model
         return $this->belongsTo(TouristProfile::class, 'idTouristProfile');
     }
 }
-

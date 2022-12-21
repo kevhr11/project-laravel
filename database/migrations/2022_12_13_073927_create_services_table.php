@@ -23,7 +23,10 @@ return new class extends Migration
             $table->string('description');
             $table->float('price');
             $table->string('img');
-            $table->integer('idStatus');
+            $table->foreignId('idBussinesProfile')
+                  ->constrained('bussines_profiles')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
             $table->timestamps();
         });
     }

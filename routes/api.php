@@ -3,7 +3,7 @@
 use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MunicipalitiesController;
 use App\Http\Controllers\SelectProfileController;
-use App\Http\Controllers\TouristAttController;
+use App\Http\Controllers\tourisPlaceTypeController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\serviceController;
@@ -21,8 +21,7 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\BussinesTypeController;
 use App\Http\Controllers\ReviewsController;
-
-
+use App\Models\touristPlaceType;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,13 +93,13 @@ Route::delete('/touristprofiles/{id}', [TouristProfileController::class,'destroy
 
 /*
 |______________________________________________
-|    *TouristAtts
+|    *TouristPlaceType
 |
 */
-Route::get('/touristatt', [TouristAttController::class,'index']);
-Route::post('/touristatt', [TouristAttController::class,'store']);
-Route::put('/touristatt/{id}', [TouristAttController::class,'update']);
-Route::delete('/touristatt/{id}', [TouristAttController::class,'destroy']);
+Route::get('/touristplacetype', [tourisPlaceTypeController::class,'index']);
+Route::post('/touristplacetype', [tourisPlaceTypeController::class,'store']);
+Route::put('/touristplacetype/{id}', [tourisPlaceTypeController::class,'update']);
+Route::delete('/touristplacetype/{id}', [tourisPlaceTypeController::class,'destroy']);
 
 /*
 |______________________________________________

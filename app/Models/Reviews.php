@@ -10,11 +10,11 @@ class Reviews extends Model
     use HasFactory;
 
     protected $fillable = [
-        'idBussinesProfile',
-    'idTouristProfile',
-    'description',
-    'score'
-];
+      'idBussinesProfile',
+      'idTouristProfile',
+      'description',
+      'score'
+    ];
 
     public function bussinesProfile (){
         return $this->hasMany(bussinesProfile ::class, 'id');

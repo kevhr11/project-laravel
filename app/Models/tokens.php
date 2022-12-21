@@ -9,9 +9,9 @@ class tokens extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'name',
-        'key'
-    ];
+      'name',
+      'key'
+      ];
 
     public function users(){
         return $this->hasMany(Users::class, 'id');

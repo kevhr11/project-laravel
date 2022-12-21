@@ -12,7 +12,7 @@ class selectProfile extends Model
         'name',
     ];
 
-     public function users(){
+    public function users(){
         return $this->hasMany(Users::class,'id');
     }
 

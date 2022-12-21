@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BussinesProfile;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class bussinesProfileController extends Controller
 {
@@ -35,20 +37,41 @@ class bussinesProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idUser'=>'required',
+          'description'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'idBussinesType'=>'required',
+          'message'=>'required|max:50|string',
+          'reviews'=>'required|max:50|string',
+          'idTourisPlace'=>'required',
+          'score'=>'required|max:50'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+        
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        
+        //Create new BussineProfile
         $bussineProfile = new BussinesProfile();
         $bussineProfile->idUser = $request->idUser;
         $bussineProfile->description = $request->description;
         $bussineProfile->location = $request->location;
-        $bussineProfile->idGetServices = $request->idGetServices;
         $bussineProfile->idBussinesType = $request->idBussinesType;
-        $bussineProfile->certificate = $request->certificate;
         $bussineProfile->message = $request->message;
         $bussineProfile->reviews = $request->reviews;
         $bussineProfile->idTourisPlace = $request->idTourisPlace;
         $bussineProfile->score = $request->score;
 
         $bussineProfile->save();
+        return response()->json($bussineProfile, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -82,20 +105,40 @@ class bussinesProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idUser'=>'required',
+          'description'=>'required|max:50|string',
+          'location'=>'required|max:50|string',
+          'idBussinesType'=>'required',
+          'message'=>'required|max:50|string',
+          'reviews'=>'required|max:50|string',
+          'idTourisPlace'=>'required',
+          'score'=>'required|max:50'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+        
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        
+        //Update new BussineProfile
         $bussineProfile = BussinesProfile::findOrFail($request->id);
         $bussineProfile->idUser = $request->idUser;
         $bussineProfile->description = $request->description;
         $bussineProfile->location = $request->location;
-        $bussineProfile->idGetServices = $request->idGetServices;
         $bussineProfile->idBussinesType = $request->idBussinesType;
-        $bussineProfile->certificate = $request->certificate;
         $bussineProfile->message = $request->message;
         $bussineProfile->reviews = $request->reviews;
         $bussineProfile->idTourisPlace = $request->idTourisPlace;
         $bussineProfile->score = $request->score;
 
         $bussineProfile->save();
-        return $bussineProfile;
+        return response()->json($bussineProfile, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -106,6 +149,7 @@ class bussinesProfileController extends Controller
      */
     public function destroy($id)
     {
+        //Delete BussineProfile
         $bussineProfile = BussinesProfile::destroy($id);
         return $bussineProfile;
     }

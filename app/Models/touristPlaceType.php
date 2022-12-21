@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BussinesType extends Model
+class touristPlaceType extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-      'name'
+        'name',
+        'status'
     ];
 
-
-    public function bussinesProfile(){
-        return $this->hasMany(bussinesProfile::class, 'id');
+    public function touristplace(){
+        return $this->hasMany(TouristPlace::class,'id');
     }
+
 }

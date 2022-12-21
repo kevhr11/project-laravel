@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\touristPlaceType;
 use Illuminate\Http\Request;
-use App\Models\Service;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class serviceController extends Controller
+class tourisPlaceTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class serviceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return $services;
+        $tourisPlaceType = touristPlaceType::all();
+
+        return $tourisPlaceType;
     }
 
     /**
@@ -40,12 +41,8 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
-          'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'name'=>'required|max:10|string',
+          'status'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -57,17 +54,13 @@ class serviceController extends Controller
           return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
-        //Create new Service  
-        $service = new Service();
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
-        
-        $service->save();
-        return response()->json($service, Response::HTTP_ACCEPTED);
+        //Create new TourisPlaceType
+        $tourisPlaceType = new touristPlaceType();
+        $tourisPlaceType->name = $request->name;
+        $tourisPlaceType->status = $request->status;
+
+        $tourisPlaceType->save();
+        return response()->json($tourisPlaceType, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -103,12 +96,8 @@ class serviceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'idCategory'=>'required',
-          'name'=>'required|max:50|string',
-          'description'=>'required|max:50|string',
-          'price'=>'required',
-          'img'=>'required|max:50|string',
-          'idBussinesProfile'=>'required'
+          'name'=>'required|max:10|string',
+          'status'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -120,17 +109,15 @@ class serviceController extends Controller
           return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
-        //Update new Service 
-        $service = Service::findOrFail($request->id);
-        $service->idCategory = $request->idCategory;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->price = $request->price;
-        $service->img = $request->img;
-        $service->idBussinesProfile = $request->idBussinesProfile;
+        //Update new TourisPlaceType
+        $tourisPlaceType  = touristPlaceType::findOrFail($request->id);
+        $tourisPlaceType = new touristPlaceType();
+        $tourisPlaceType->name = $request->name;
+        $tourisPlaceType->status = $request->status;
 
-        $service->save();
-        return response()->json($service, Response::HTTP_ACCEPTED);
+        $tourisPlaceType->save();
+
+        return response()->json($tourisPlaceType, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -141,8 +128,8 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Service
-        $service = Service::destroy($id);
-        return $service;
+        //Delete TouristType
+        $tourisPlaceType = touristPlaceType::destroy($id);
+        return $tourisPlaceType;
     }
 }
