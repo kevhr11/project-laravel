@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departament;
 use Illuminate\Http\Request;
+use App\Models\tokensindigo;
 use Illuminate\Support\Facades\Validator;
 
-class DepartamentController extends Controller
+class TokensindigoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,8 @@ class DepartamentController extends Controller
      */
     public function index()
     {
-        //create controller departaments
-        $departament = Departament::all();
-
-        return $departament ;
-
+        $token = tokensindigo::all();
+        return $token;
     }
 
     /**
@@ -29,8 +26,7 @@ class DepartamentController extends Controller
      */
     public function create()
     {
-
-
+        //
     }
 
     /**
@@ -43,7 +39,8 @@ class DepartamentController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'name'=>'required|max:50|string'
+          'name'=>'required|max:10|string',
+          'key'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -55,12 +52,13 @@ class DepartamentController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Create new departament
-        $departament = new Departament();
-        $departament->name = $request->name;
+        //Create new Token
+        $token = new tokensindigo();
+        $token->name = $request->name;
+        $token->key = $request->key;
 
-        $departament->save();
-        return response()->json($departament, status:201);
+        $token->save();
+        return response()->json($token, status:201);
     }
 
     /**
@@ -96,7 +94,8 @@ class DepartamentController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'name'=>'required|max:50|string'
+          'name'=>'required|max:10|string',
+          'key'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -108,12 +107,13 @@ class DepartamentController extends Controller
           return response()->json($validator->errors());
         }
         
-        //Update new departament
-        $departament = Departament::findOrFail($id);
-        $departament->name = $request->name;
-
-        $departament->save();
-        return response()->json($departament, status:405);
+        //Update new Token
+        $token = tokensindigo::findOrFail($id);
+        $token->name =$request->name;
+        $token->key =$request->key;
+        
+        $token->save();
+        return response()->json($token, status:405);
     }
 
     /**
@@ -124,8 +124,8 @@ class DepartamentController extends Controller
      */
     public function destroy($id)
     {
-        //Delete Departament
-        $departament = Departament::destroy($id);
-        return $departament;
+        //Delete Token
+        $token = tokensindigo::destroy($id);
+        return $token;
     }
 }

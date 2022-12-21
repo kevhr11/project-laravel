@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
@@ -18,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $user = Users::all();
+        $user = User::all();
 
         return $user;
     }
@@ -52,7 +50,6 @@ class UsersController extends Controller
           'imgProfile'=>'required|max:50|string',
           'gender'=>'required|max:50|string',
           'dateOfBirth'=>'required|max:50|string',
-          'idToken'=>'required|max:50',
           'idSelectProfile'=>'required|max:50'
         ],
         [
@@ -62,11 +59,12 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
+      
         //Create new User
-        $user = new Users();
+        $user = new User();
         $user->name = $request->name;
         $user->lastName = $request->lastName;
         $user->DUI = $request->DUI;
@@ -76,11 +74,10 @@ class UsersController extends Controller
         $user->imgProfile = $request->imgProfile;
         $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
-        $user->idToken = $request->idToken;
         $user->idSelectProfile = $request->idSelectProfile;
 
         $user->save();
-        return response()->json($user, Response::HTTP_ACCEPTED);
+        return response()->json($user);
     }
 
     /**
@@ -125,7 +122,7 @@ class UsersController extends Controller
           'imgProfile'=>'required|max:50|string',
           'gender'=>'required|max:50|string',
           'dateOfBirth'=>'required|max:50|string',
-          'idToken'=>'required|max:50',
+          /* 'idToken'=>'required|max:50', */
           'idSelectProfile'=>'required|max:50'
         ],
         [
@@ -135,11 +132,11 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Update new User
-        $user = Users::findOrFail($request->id);
+        $user = User::findOrFail($request->id);
         $user->name = $request->name;
         $user->lastName = $request->lastName;
         $user->DUI = $request->DUI;
@@ -149,12 +146,12 @@ class UsersController extends Controller
         $user->imgProfile = $request->imgProfile;
         $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
-        $user->idToken = $request->idToken;
+        /* $user->idToken = $request->idToken; */
         $user->idSelectProfile = $request->idSelectProfile;
 
         $user->save();
 
-        return response()->json($user, Response::HTTP_ACCEPTED);
+        return response()->json($user, status:405);
     }
 
     /**
@@ -166,7 +163,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //Delete User
-        $user = Users::destroy($id);
+        $user = User::destroy($id);
         return $user;
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\BussinesType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class BussinesTypeController extends Controller
 {
@@ -41,7 +40,7 @@ class BussinesTypeController extends Controller
         ]);
         
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Create new BussineType
@@ -49,7 +48,7 @@ class BussinesTypeController extends Controller
         $bussinesType->name = $request->name;
 
         $bussinesType->save();
-        return response()->json($bussinesType, Response::HTTP_ACCEPTED);
+        return response()->json($bussinesType, status:201);
     }
 
     /**
@@ -85,7 +84,7 @@ class BussinesTypeController extends Controller
         ]);
         
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Update new BussineType
@@ -93,7 +92,7 @@ class BussinesTypeController extends Controller
         $bussinesType->name = $request->name;
 
         $bussinesType->save();
-        return response()->json($bussinesType, Response::HTTP_ACCEPTED);
+        return response()->json($bussinesType, status:201);
     }
 
     /**

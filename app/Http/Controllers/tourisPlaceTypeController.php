@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\touristPlaceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class tourisPlaceTypeController extends Controller
 {
@@ -51,7 +50,7 @@ class tourisPlaceTypeController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Create new TourisPlaceType
@@ -60,7 +59,7 @@ class tourisPlaceTypeController extends Controller
         $tourisPlaceType->status = $request->status;
 
         $tourisPlaceType->save();
-        return response()->json($tourisPlaceType, Response::HTTP_ACCEPTED);
+        return response()->json($tourisPlaceType, status:201);
     }
 
     /**
@@ -106,7 +105,7 @@ class tourisPlaceTypeController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+          return response()->json($validator->errors());
         }
         
         //Update new TourisPlaceType
@@ -117,7 +116,7 @@ class tourisPlaceTypeController extends Controller
 
         $tourisPlaceType->save();
 
-        return response()->json($tourisPlaceType, Response::HTTP_ACCEPTED);
+        return response()->json($tourisPlaceType, status:405);
     }
 
     /**
