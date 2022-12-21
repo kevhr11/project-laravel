@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
@@ -61,7 +62,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Create new User
@@ -79,7 +80,7 @@ class UsersController extends Controller
         $user->idSelectProfile = $request->idSelectProfile;
 
         $user->save();
-        return response()->json($user, status:201);
+        return response()->json($user, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -134,7 +135,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
         //Update new User
@@ -153,7 +154,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return response()->json($user, status:405);
+        return response()->json($user, Response::HTTP_ACCEPTED);
     }
 
     /**

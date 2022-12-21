@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Municipalitie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class MunicipalitiesController extends Controller
 {
@@ -52,7 +53,7 @@ class MunicipalitiesController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         //Create new Municipality
@@ -61,7 +62,7 @@ class MunicipalitiesController extends Controller
         $municipalities->idDepartaments = $request->idDepartaments;
 
         $municipalities->save();
-        return response()->json($municipalities, status:201);
+        return response()->json($municipalities, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -107,7 +108,7 @@ class MunicipalitiesController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         //Update new Municipality
@@ -117,7 +118,7 @@ class MunicipalitiesController extends Controller
 
         $municipalities->save();
 
-        return response()->json($municipalities, status:405);
+        return response()->json($municipalities, Response::HTTP_ACCEPTED);
     }
 
     /**
