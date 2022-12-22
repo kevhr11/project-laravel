@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TouristProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class TouristProfileController extends Controller
 {
@@ -55,7 +56,7 @@ class TouristProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Create new TouristProfile
@@ -68,7 +69,7 @@ class TouristProfileController extends Controller
         $touristprofile->idTouristPlaces = $request->idTouristPlaces;
 
         $touristprofile->save();
-        return response()->json($touristprofile, status:201);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class serviceController extends Controller
 {
@@ -53,7 +54,7 @@ class serviceController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Create new Service  
@@ -66,7 +67,7 @@ class serviceController extends Controller
         $service->idBussinesProfile = $request->idBussinesProfile;
         
         $service->save();
-        return response()->json($service, status:201);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
@@ -116,7 +117,7 @@ class serviceController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Update new Service 
@@ -129,7 +130,7 @@ class serviceController extends Controller
         $service->idBussinesProfile = $request->idBussinesProfile;
 
         $service->save();
-        return response()->json($service, status:405);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**

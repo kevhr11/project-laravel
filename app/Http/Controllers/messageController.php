@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\message;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class messageController extends Controller
 {
@@ -52,7 +53,7 @@ class messageController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
       
         //Create new Message
@@ -64,7 +65,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
-        return response()->json($message, status:201);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
@@ -113,7 +114,7 @@ class messageController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
       
         //Update new Message
@@ -125,7 +126,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
-        return response()->json($message, status:405);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**

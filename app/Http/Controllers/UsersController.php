@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
@@ -59,7 +60,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
       
@@ -77,7 +78,7 @@ class UsersController extends Controller
         $user->idSelectProfile = $request->idSelectProfile;
 
         $user->save();
-        return response()->json($user);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
@@ -132,7 +133,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Update new User
@@ -151,7 +152,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return response()->json($user, status:405);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\selectProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class SelectProfileController extends Controller
 {
@@ -50,7 +51,7 @@ class SelectProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Create new SelectProfile
@@ -58,7 +59,7 @@ class SelectProfileController extends Controller
         $selectprofile->name = $request->name;
 
         $selectprofile->save();
-        return response()->json($selectprofile, status:201);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
@@ -103,7 +104,7 @@ class SelectProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Update new SelectProfile
@@ -111,7 +112,7 @@ class SelectProfileController extends Controller
         $selectprofile->name = $request->name;
         $selectprofile->save();
 
-        return response()->json($selectprofile, status:405);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**

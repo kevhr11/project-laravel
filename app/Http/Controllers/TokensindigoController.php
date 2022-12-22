@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\tokensindigo;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class TokensindigoController extends Controller
 {
@@ -49,7 +50,7 @@ class TokensindigoController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Create new Token
@@ -58,7 +59,7 @@ class TokensindigoController extends Controller
         $token->key = $request->key;
 
         $token->save();
-        return response()->json($token, status:201);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
@@ -104,7 +105,7 @@ class TokensindigoController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return response()->json($validator->errors());
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
         //Update new Token
@@ -113,7 +114,7 @@ class TokensindigoController extends Controller
         $token->key =$request->key;
         
         $token->save();
-        return response()->json($token, status:405);
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
