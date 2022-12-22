@@ -59,7 +59,7 @@ class SelectProfileController extends Controller
         $selectprofile->name = $request->name;
 
         $selectprofile->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($selectprofile, Response::HTTP_OK);
     }
 
     /**
@@ -112,7 +112,7 @@ class SelectProfileController extends Controller
         $selectprofile->name = $request->name;
         $selectprofile->save();
 
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($selectprofile, Response::HTTP_OK);
     }
 
     /**

@@ -57,7 +57,7 @@ class categoryController extends Controller
         $category->name = $request->name;
 
         $category->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($category, Response::HTTP_OK);
     }
 
     /**
@@ -110,7 +110,7 @@ class categoryController extends Controller
         $category->name = $request->name;
 
         $category->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($category, Response::HTTP_OK);
     }
 
     /**

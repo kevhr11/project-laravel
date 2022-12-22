@@ -71,7 +71,7 @@ class bussinesProfileController extends Controller
         $bussineProfile->score = $request->score;
 
         $bussineProfile->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($bussineProfile, Response::HTTP_OK);
     }
 
     /**
@@ -138,7 +138,7 @@ class bussinesProfileController extends Controller
         $bussineProfile->score = $request->score;
 
         $bussineProfile->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($bussineProfile, Response::HTTP_OK);
     }
 
     /**

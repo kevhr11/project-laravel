@@ -49,7 +49,7 @@ class BussinesTypeController extends Controller
         $bussinesType->name = $request->name;
 
         $bussinesType->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($bussinesType, Response::HTTP_OK);
     }
 
     /**
@@ -93,7 +93,7 @@ class BussinesTypeController extends Controller
         $bussinesType->name = $request->name;
 
         $bussinesType->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($bussinesType, Response::HTTP_OK);
     }
 
     /**

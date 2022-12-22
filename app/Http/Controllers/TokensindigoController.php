@@ -59,7 +59,7 @@ class TokensindigoController extends Controller
         $token->key = $request->key;
 
         $token->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($token, Response::HTTP_OK);
     }
 
     /**
@@ -114,7 +114,7 @@ class TokensindigoController extends Controller
         $token->key =$request->key;
         
         $token->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($token, Response::HTTP_OK);
     }
 
     /**

@@ -78,7 +78,7 @@ class UsersController extends Controller
         $user->idSelectProfile = $request->idSelectProfile;
 
         $user->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($user, Response::HTTP_OK);
     }
 
     /**
@@ -152,7 +152,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($user, Response::HTTP_OK);
     }
 
     /**

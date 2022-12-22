@@ -62,7 +62,7 @@ class MunicipalitiesController extends Controller
         $municipalities->idDepartaments = $request->idDepartaments;
 
         $municipalities->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($municipalities, Response::HTTP_OK);
     }
 
     /**
@@ -117,7 +117,7 @@ class MunicipalitiesController extends Controller
         $municipalities->idDepartaments = $request->idDepartaments;
 
         $municipalities->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($municipalities, Response::HTTP_OK);
     }
 
     /**

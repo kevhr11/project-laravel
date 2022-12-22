@@ -55,7 +55,7 @@ class ReviewsController extends Controller
         $reviews->score = $request->score;  
 
         $reviews->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($reviews, Response::HTTP_OK);
     }
 
     /**
@@ -106,7 +106,7 @@ class ReviewsController extends Controller
         $reviews->score = $request->score;  
 
         $reviews->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($reviews, Response::HTTP_OK);
     }
 
     /**

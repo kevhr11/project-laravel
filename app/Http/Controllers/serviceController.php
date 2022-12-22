@@ -67,7 +67,7 @@ class serviceController extends Controller
         $service->idBussinesProfile = $request->idBussinesProfile;
         
         $service->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($service, Response::HTTP_OK);
     }
 
     /**
@@ -130,7 +130,7 @@ class serviceController extends Controller
         $service->idBussinesProfile = $request->idBussinesProfile;
 
         $service->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($service, Response::HTTP_OK);
     }
 
     /**

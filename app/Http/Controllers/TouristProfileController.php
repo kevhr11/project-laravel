@@ -69,7 +69,7 @@ class TouristProfileController extends Controller
         $touristprofile->idTouristPlaces = $request->idTouristPlaces;
 
         $touristprofile->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($touristprofile, Response::HTTP_OK);
     }
 
     /**
@@ -133,7 +133,7 @@ class TouristProfileController extends Controller
 
         $touristprofile->save();
 
-        return response()->json($touristprofile, status:405);
+        return response()->json($touristprofile, Response::HTTP_OK);
 
     }
 

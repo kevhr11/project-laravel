@@ -74,7 +74,7 @@ class TouristPlaceController extends Controller
         $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
 
         $TouristPlace->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($TouristPlace, Response::HTTP_OK);
     }
 
     /**
@@ -140,7 +140,7 @@ class TouristPlaceController extends Controller
 
         $TouristPlace->save();
 
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($TouristPlace, Response::HTTP_OK);
     }
 
     /**

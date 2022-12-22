@@ -65,7 +65,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($message, Response::HTTP_OK);
     }
 
     /**
@@ -126,7 +126,7 @@ class messageController extends Controller
         $message->output = $request->output;
 
         $message->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($message, Response::HTTP_OK);
     }
 
     /**

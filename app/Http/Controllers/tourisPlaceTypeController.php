@@ -60,7 +60,7 @@ class tourisPlaceTypeController extends Controller
         $tourisPlaceType->status = $request->status;
 
         $tourisPlaceType->save();
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($tourisPlaceType, Response::HTTP_OK);
     }
 
     /**
@@ -117,7 +117,7 @@ class tourisPlaceTypeController extends Controller
 
         $tourisPlaceType->save();
 
-        return response()->json($departament, Response::HTTP_OK);
+        return response()->json($tourisPlaceType, Response::HTTP_OK);
     }
 
     /**
