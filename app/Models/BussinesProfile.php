@@ -12,18 +12,12 @@ class BussinesProfile extends Model
         'idUser',
         'description',
         'location',
-        'idGetServices',
         'idBussinesType',
-        'certificate',
         'message',
         'reviews',
         'idTourisPlace',
         'score'
     ];
-
-    public function getService(){
-      return $this->hasMany(GetService::class, 'idBussineProfile');
-    }
 
     public function message(){
       return $this->belongsTo(message::class, 'message');

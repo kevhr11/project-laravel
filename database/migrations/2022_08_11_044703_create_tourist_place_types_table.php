@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roll_ids', function (Blueprint $table) {
+        Schema::create('tourist_place_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roll_ids');
+        Schema::dropIfExists('tourist_place_types');
     }
 };

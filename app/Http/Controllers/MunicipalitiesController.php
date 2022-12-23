@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Municipalitie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class MunicipalitiesController extends Controller
 {
@@ -39,15 +41,28 @@ class MunicipalitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:10|string',
+          'idDepartaments'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+
+        //Create new Municipality
         $municipalities = new Municipalitie();
         $municipalities->name = $request->name;
         $municipalities->idDepartaments = $request->idDepartaments;
 
         $municipalities->save();
-
-        return $municipalities;
-
+        return response()->json($municipalities, Response::HTTP_OK);
     }
 
     /**
@@ -81,14 +96,28 @@ class MunicipalitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:10|string',
+          'idDepartaments'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+
+        //Update new Municipality
         $municipalities = Municipalitie::findOrFail($request->id);
         $municipalities->name = $request->name;
         $municipalities->idDepartaments = $request->idDepartaments;
 
         $municipalities->save();
-
-        return $municipalities;
+        return response()->json($municipalities, Response::HTTP_OK);
     }
 
     /**
@@ -99,6 +128,8 @@ class MunicipalitiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete Municipality
+        $municipalities = Municipalitie::destroy($id);
+        return $municipalities;
     }
 }

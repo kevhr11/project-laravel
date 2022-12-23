@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Departament;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class DepartamentController extends Controller
 {
@@ -40,14 +42,26 @@ class DepartamentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-         //create new departament
-         $departament = new Departament();
-         $departament->name = $request->name;
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:50|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
 
-         $departament->save();
-         return $departament;
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+        //Create new departament
+        $departament = new Departament();
+        $departament->name = $request->name;
 
+        $departament->save();
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
@@ -81,14 +95,26 @@ class DepartamentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $departament = Departament::findOrFail($id);
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:50|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
 
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+        //Update new departament
+        $departament = Departament::findOrFail($id);
         $departament->name = $request->name;
 
         $departament->save();
-
-        return $departament;
+        return response()->json($departament, Response::HTTP_OK);
     }
 
     /**
@@ -99,6 +125,8 @@ class DepartamentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete Departament
+        $departament = Departament::destroy($id);
+        return $departament;
     }
 }

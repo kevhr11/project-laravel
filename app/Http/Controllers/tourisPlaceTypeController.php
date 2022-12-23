@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\touristPlaceType;
 use Illuminate\Http\Request;
-use App\Models\TouristPlace;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class TouristPlaceController extends Controller
+class tourisPlaceTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,9 @@ class TouristPlaceController extends Controller
      */
     public function index()
     {
-        // get TouristPlace
+        $tourisPlaceType = touristPlaceType::all();
 
-        $TouristPlace = TouristPlace::all();
-
-        return $TouristPlace;
-
-
+        return $tourisPlaceType;
     }
 
     /**
@@ -45,13 +41,8 @@ class TouristPlaceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'namePlace'=>'required|max:50|string',
-          'location'=>'required|max:50|string',
-          'idMunicipalities'=>'required',
-          'description'=>'required|max:50|string',
-          'gallery'=>'required|max:50|string',
-          'score'=>'required',
-          'idTouristPlaceType'=>'required'
+          'name'=>'required|max:10|string',
+          'status'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -63,18 +54,13 @@ class TouristPlaceController extends Controller
           return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
-        //Create new TouristPlace
-        $TouristPlace = new TouristPlace();
-        $TouristPlace->namePlace = $request->namePlace;
-        $TouristPlace->location = $request->location;
-        $TouristPlace->idMunicipalities = $request->idMunicipalities;
-        $TouristPlace->description = $request->description;
-        $TouristPlace->gallery = $request->gallery;
-        $TouristPlace->score = $request->score;
-        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
+        //Create new TourisPlaceType
+        $tourisPlaceType = new touristPlaceType();
+        $tourisPlaceType->name = $request->name;
+        $tourisPlaceType->status = $request->status;
 
-        $TouristPlace->save();
-        return response()->json($TouristPlace, Response::HTTP_OK);
+        $tourisPlaceType->save();
+        return response()->json($tourisPlaceType, Response::HTTP_OK);
     }
 
     /**
@@ -110,13 +96,8 @@ class TouristPlaceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'namePlace'=>'required|max:50|string',
-          'location'=>'required|max:50|string',
-          'idMunicipalities'=>'required',
-          'description'=>'required|max:50|string',
-          'gallery'=>'required|max:50|string',
-          'score'=>'required',
-          'idTouristPlaceType'=>'required'
+          'name'=>'required|max:10|string',
+          'status'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -128,19 +109,15 @@ class TouristPlaceController extends Controller
           return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
-        //Update new TouristPlace
-        $TouristPlace = TouristPlace::findOrFail($id);
-        $TouristPlace->namePlace = $request->namePlace;
-        $TouristPlace->location = $request->location;
-        $TouristPlace->idMunicipalities = $request->idMunicipalities;
-        $TouristPlace->description = $request->description;
-        $TouristPlace->gallery = $request->gallery;
-        $TouristPlace->score = $request->score;
-        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
+        //Update new TourisPlaceType
+        $tourisPlaceType  = touristPlaceType::findOrFail($request->id);
+        $tourisPlaceType = new touristPlaceType();
+        $tourisPlaceType->name = $request->name;
+        $tourisPlaceType->status = $request->status;
 
-        $TouristPlace->save();
+        $tourisPlaceType->save();
 
-        return response()->json($TouristPlace, Response::HTTP_OK);
+        return response()->json($tourisPlaceType, Response::HTTP_OK);
     }
 
     /**
@@ -151,8 +128,8 @@ class TouristPlaceController extends Controller
      */
     public function destroy($id)
     {
-        //Delete TouristPlace
-        $TouristPlace = TouristPlace::destroy($id);
-        return $TouristPlace;
+        //Delete TouristType
+        $tourisPlaceType = touristPlaceType::destroy($id);
+        return $tourisPlaceType;
     }
 }

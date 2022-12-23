@@ -12,8 +12,8 @@ class selectProfile extends Model
         'name',
     ];
 
-     public function users(){
-        return $this->hasMany(Users::class,'id');
+    public function users(){
+        return $this->hasMany(User::class,'id');
     }
 
 }

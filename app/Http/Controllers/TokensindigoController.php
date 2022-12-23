@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TouristPlace;
+use App\Models\tokensindigo;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class TouristPlaceController extends Controller
+class TokensindigoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,8 @@ class TouristPlaceController extends Controller
      */
     public function index()
     {
-        // get TouristPlace
-
-        $TouristPlace = TouristPlace::all();
-
-        return $TouristPlace;
-
-
+        $token = tokensindigo::all();
+        return $token;
     }
 
     /**
@@ -45,13 +40,8 @@ class TouristPlaceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'namePlace'=>'required|max:50|string',
-          'location'=>'required|max:50|string',
-          'idMunicipalities'=>'required',
-          'description'=>'required|max:50|string',
-          'gallery'=>'required|max:50|string',
-          'score'=>'required',
-          'idTouristPlaceType'=>'required'
+          'name'=>'required|max:10|string',
+          'key'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -63,18 +53,13 @@ class TouristPlaceController extends Controller
           return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
-        //Create new TouristPlace
-        $TouristPlace = new TouristPlace();
-        $TouristPlace->namePlace = $request->namePlace;
-        $TouristPlace->location = $request->location;
-        $TouristPlace->idMunicipalities = $request->idMunicipalities;
-        $TouristPlace->description = $request->description;
-        $TouristPlace->gallery = $request->gallery;
-        $TouristPlace->score = $request->score;
-        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
+        //Create new Token
+        $token = new tokensindigo();
+        $token->name = $request->name;
+        $token->key = $request->key;
 
-        $TouristPlace->save();
-        return response()->json($TouristPlace, Response::HTTP_OK);
+        $token->save();
+        return response()->json($token, Response::HTTP_OK);
     }
 
     /**
@@ -110,13 +95,8 @@ class TouristPlaceController extends Controller
     {
         //Validate data
         $validator = Validator::make($request->all(), [
-          'namePlace'=>'required|max:50|string',
-          'location'=>'required|max:50|string',
-          'idMunicipalities'=>'required',
-          'description'=>'required|max:50|string',
-          'gallery'=>'required|max:50|string',
-          'score'=>'required',
-          'idTouristPlaceType'=>'required'
+          'name'=>'required|max:10|string',
+          'key'=>'required|max:10|string'
         ],
         [
           'required'=>'El campo :attribute es requerido',
@@ -128,19 +108,13 @@ class TouristPlaceController extends Controller
           return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
         }
         
-        //Update new TouristPlace
-        $TouristPlace = TouristPlace::findOrFail($id);
-        $TouristPlace->namePlace = $request->namePlace;
-        $TouristPlace->location = $request->location;
-        $TouristPlace->idMunicipalities = $request->idMunicipalities;
-        $TouristPlace->description = $request->description;
-        $TouristPlace->gallery = $request->gallery;
-        $TouristPlace->score = $request->score;
-        $TouristPlace->idTouristPlaceType = $request->idTouristPlaceType;
-
-        $TouristPlace->save();
-
-        return response()->json($TouristPlace, Response::HTTP_OK);
+        //Update new Token
+        $token = tokensindigo::findOrFail($id);
+        $token->name =$request->name;
+        $token->key =$request->key;
+        
+        $token->save();
+        return response()->json($token, Response::HTTP_OK);
     }
 
     /**
@@ -151,8 +125,8 @@ class TouristPlaceController extends Controller
      */
     public function destroy($id)
     {
-        //Delete TouristPlace
-        $TouristPlace = TouristPlace::destroy($id);
-        return $TouristPlace;
+        //Delete Token
+        $token = tokensindigo::destroy($id);
+        return $token;
     }
 }

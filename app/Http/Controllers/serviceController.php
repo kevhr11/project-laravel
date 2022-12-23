@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class serviceController extends Controller
 {
@@ -36,15 +38,36 @@ class serviceController extends Controller
      */
     public function store(Request $request)
     {
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idCategory'=>'required',
+          'name'=>'required|max:50|string',
+          'description'=>'required|max:50|string',
+          'price'=>'required',
+          'img'=>'required|max:50|string',
+          'idBussinesProfile'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+        //Create new Service  
         $service = new Service();
         $service->idCategory = $request->idCategory;
         $service->name = $request->name;
         $service->description = $request->description;
         $service->price = $request->price;
         $service->img = $request->img;
-        $service->idStatus = $request->idStatus;
+        $service->idBussinesProfile = $request->idBussinesProfile;
         
         $service->save();
+        return response()->json($service, Response::HTTP_OK);
     }
 
     /**
@@ -78,16 +101,36 @@ class serviceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idCategory'=>'required',
+          'name'=>'required|max:50|string',
+          'description'=>'required|max:50|string',
+          'price'=>'required',
+          'img'=>'required|max:50|string',
+          'idBussinesProfile'=>'required'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+        //Update new Service 
         $service = Service::findOrFail($request->id);
         $service->idCategory = $request->idCategory;
         $service->name = $request->name;
         $service->description = $request->description;
         $service->price = $request->price;
         $service->img = $request->img;
-        $service->idStatus = $request->idStatus;
+        $service->idBussinesProfile = $request->idBussinesProfile;
 
         $service->save();
-        return $service;
+        return response()->json($service, Response::HTTP_OK);
     }
 
     /**
@@ -98,6 +141,7 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
+        //Delete Service
         $service = Service::destroy($id);
         return $service;
     }

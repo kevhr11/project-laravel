@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
@@ -16,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $user = Users::all();
+        $user = User::all();
 
         return $user;
     }
@@ -39,25 +40,45 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $user = new Users();
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:50|string',
+          'lastName'=>'required|max:50|string',
+          'DUI'=>'required|max:50|string',
+          'phoneNumber'=>'required|max:50',
+          'email'=>'required|max:50|string',
+          'password'=>'required|max:50|string',
+          'imgProfile'=>'required|max:50|string',
+          'gender'=>'required|max:50|string',
+          'dateOfBirth'=>'required|max:50|string',
+          'idSelectProfile'=>'required|max:50'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
 
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+      
+        //Create new User
+        $user = new User();
         $user->name = $request->name;
         $user->lastName = $request->lastName;
         $user->DUI = $request->DUI;
         $user->phoneNumber = $request->phoneNumber;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->idRoll = $request->idRoll;
         $user->imgProfile = $request->imgProfile;
-        $user->idGender = $request->idGender;
+        $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
-        $user->idToken = $request->idToken;
         $user->idSelectProfile = $request->idSelectProfile;
 
         $user->save();
-
-        return $user;
+        return response()->json($user, Response::HTTP_OK);
     }
 
     /**
@@ -91,25 +112,47 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $user = Users::findOrFail($request->id);
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'name'=>'required|max:50|string',
+          'lastName'=>'required|max:50|string',
+          'DUI'=>'required|max:50|string',
+          'phoneNumber'=>'required|max:50',
+          'email'=>'required|max:50|string',
+          'password'=>'required|max:50|string',
+          'imgProfile'=>'required|max:50|string',
+          'gender'=>'required|max:50|string',
+          'dateOfBirth'=>'required|max:50|string',
+          /* 'idToken'=>'required|max:50', */
+          'idSelectProfile'=>'required|max:50'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
 
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+        //Update new User
+        $user = User::findOrFail($request->id);
         $user->name = $request->name;
         $user->lastName = $request->lastName;
         $user->DUI = $request->DUI;
         $user->phoneNumber = $request->phoneNumber;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->idRoll = $request->idRoll;
         $user->imgProfile = $request->imgProfile;
-        $user->idGender = $request->idGender;
+        $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
-        $user->idToken = $request->idToken;
+        /* $user->idToken = $request->idToken; */
         $user->idSelectProfile = $request->idSelectProfile;
 
         $user->save();
 
-        return $user;
+        return response()->json($user, Response::HTTP_OK);
     }
 
     /**
@@ -120,6 +163,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete User
+        $user = User::destroy($id);
+        return $user;
     }
 }

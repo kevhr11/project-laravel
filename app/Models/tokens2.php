@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gender extends Model
+class tokens extends Model
 {
     use HasFactory;
+    protected $fillable =[
+      'name',
+      'key'
+      ];
 
-    protected $fillable = ['name'];
-
-    public function Users(){
+    public function users(){
         return $this->hasMany(Users::class, 'id');
     }
-
-    public function Gender(){
-        return $this->hasMany(Gender::class, 'id');
-    }
-
-
 }

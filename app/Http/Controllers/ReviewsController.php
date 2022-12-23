@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Reviews;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class ReviewsController extends Controller
 {
@@ -28,7 +30,24 @@ class ReviewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idBussinesProfile'=>'required',
+          'idTouristProfile'=>'required',
+          'description'=>'required|max:50|string',
+          'score'=>'required|max:50|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+        //Create new Review
         $reviews = new Reviews();
         $reviews->idBussinesProfile = $request->idBussinesProfile;
         $reviews->idTouristProfile = $request->idTouristProfile;        
@@ -36,6 +55,7 @@ class ReviewsController extends Controller
         $reviews->score = $request->score;  
 
         $reviews->save();
+        return response()->json($reviews, Response::HTTP_OK);
     }
 
     /**
@@ -60,7 +80,24 @@ class ReviewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validate data
+        $validator = Validator::make($request->all(), [
+          'idBussinesProfile'=>'required',
+          'idTouristProfile'=>'required',
+          'description'=>'required|max:50|string',
+          'score'=>'required|max:50|string'
+        ],
+        [
+          'required'=>'El campo :attribute es requerido',
+          'max'=>'El nombre es :attribute largo',
+          'string'=>'El campo :attribute no es una cadena de texto'
+        ]);
+        
+        if ($validator->fails()) {
+          return response()->json($validator->errors(), Response::HTTP_EXPECTATION_FAILED);
+        }
+        
+        //Update new Review
         $reviews = Reviews::findOrFail($request->id);
         $reviews = new Reviews();
         $reviews->idBussinesProfile = $request->idBussinesProfile;
@@ -69,7 +106,7 @@ class ReviewsController extends Controller
         $reviews->score = $request->score;  
 
         $reviews->save();
-        return $reviews;
+        return response()->json($reviews, Response::HTTP_OK);
     }
 
     /**
@@ -80,7 +117,7 @@ class ReviewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete Reviews
         $reviews = Reviews::destroy($id);
         return $reviews;
     }

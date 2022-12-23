@@ -14,14 +14,14 @@ class Service extends Model
       'description',
       'price',
       'img',
-      'idStatus'
+      'idBussinesProfile'
     ];
 
     public function Category(){
-      return $this->hasMany(Category::class, 'id');
+      return $this->hasMany(Category::class, 'idCategory');
     }
 
     public function Service(){
-      return $this->hasMany(GetService::class, 'idService');
+      return $this->hasMany(BussinesProfile::class, 'idBussinesProfile');
     }
 }

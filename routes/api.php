@@ -1,19 +1,22 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+
+
 use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MunicipalitiesController;
 use App\Http\Controllers\SelectProfileController;
-use App\Http\Controllers\TouristAttController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\tourisPlaceTypeController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\serviceController;
 use App\Http\Controllers\getServiceController;
 use App\Http\Controllers\bussinesProfileController;
 
 use App\Http\Controllers\messageController;
-use App\Http\Controllers\tokenController;
+use App\Http\Controllers\TokensindigoController;
 use App\Http\Controllers\GalleryController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TouristPlaceController;
 use App\Http\Controllers\TouristProfileController;
 use App\Http\Controllers\UsersController;
@@ -22,23 +25,17 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\BussinesTypeController;
 use App\Http\Controllers\ReviewsController;
+use App\Models\touristPlaceType;
 
 
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function(){
+  Route::get('userProfile', [AuthController::class, 'userProfile']);
+  Route::post('logout', [AuthController::class, 'logout']);
 });
+
 
 /*
 |______________________________________________
@@ -95,13 +92,13 @@ Route::delete('/touristprofiles/{id}', [TouristPlaceController::class,'destroy']
 
 /*
 |______________________________________________
-|    *TouristAtts
+|    *TouristPlaceType
 |
 */
-Route::get('/touristatt', [TouristAttController::class,'index']);
-Route::post('/touristatt', [TouristAttController::class,'store']);
-Route::put('/touristatt/{id}', [TouristAttController::class,'update']);
-Route::delete('/touristatt/{id}', [TouristPlaceController::class,'destroy']);
+Route::get('/touristplacetype', [tourisPlaceTypeController::class,'index']);
+Route::post('/touristplacetype', [tourisPlaceTypeController::class,'store']);
+Route::put('/touristplacetype/{id}', [tourisPlaceTypeController::class,'update']);
+Route::delete('/touristplacetype/{id}', [tourisPlaceTypeController::class,'destroy']);
 
 /*
 |______________________________________________
@@ -109,7 +106,7 @@ Route::delete('/touristatt/{id}', [TouristPlaceController::class,'destroy']);
 |
 */
 Route::get('/users', [UsersController::class,'index']);
-Route::post('/users', [UsersController::class,'store']);
+/* Route::post('/users', [UsersController::class,'store']); */
 Route::put('/users/{id}', [UsersController::class,'update']);
 Route::delete('/users/{id}', [UsersController::class,'destroy']);
 
@@ -181,10 +178,10 @@ route::put('/messages/{id}', [messageController::class,'update']);
 route::delete('/messages/{id}', [messageController::class,'destroy']);
 
 //Tokens
-route::get('/tokens',[tokenController ::class,'index']);
-route::post('/tokens', [tokenController::class,'store']);
-route::put('/tokens/{id}', [tokenController::class,'update']);
-route::delete('/tokens/{id}', [tokenController::class,'destroy']);
+route::get('/tokens',[TokensindigoController ::class,'index']);
+route::post('/tokens', [TokensindigoController::class,'store']);
+route::put('/tokens/{id}', [TokensindigoController::class,'update']);
+route::delete('/tokens/{id}', [TokensindigoController::class,'destroy']);
 
 //Galleries
 route::get('/Galleries',[GalleryController ::class,'index']);

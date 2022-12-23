@@ -19,35 +19,22 @@ return new class extends Migration
             $table->string('lastName');
             $table->string('DUI');
             $table->integer('phoneNumber');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
-
-            $table->foreignId('idRoll')
-                  ->constrained('roll_ids')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete()
-            ;
-
             $table->string('imgProfile');
-
-            $table->foreignId('idGender')
-                  ->constrained('genders')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete()
-            ;
-
+            $table->string('gender');
             $table->string('dateOfBirth');
-
-            $table->foreignId('idToken')
-                  ->constrained('tokens')
+            
+            /* $table->foreignId('idtokensindigo')
+                  ->constrained('tokensindigos')
                   ->cascadeOnDelete()
-                  ->cascadeOnUpdate();
+                  ->cascadeOnUpdate(); */
 
             $table->foreignId('idSelectProfile')
                     ->constrained('select_profiles')
                     ->cascadeOnUpdate()
-                    ->cascadeOnDelete()
-            ;
+                    ->cascadeOnDelete();
+                    
             $table->timestamps();
         });
     }

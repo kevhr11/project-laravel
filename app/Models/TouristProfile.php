@@ -15,12 +15,11 @@ class TouristProfile extends Model
         'location',
         'message',
         'reviews',
-        'idTouristPlaces',
-        'idGallery'
+        'idTouristPlaces'
     ];
 
     public function users(){
-        return $this->belongsTo(Users::class,'idUser');
+        return $this->belongsTo(User::class,'idUser');
     }
 
     public function message(){
